@@ -6,9 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// builder.WebHost.ConfigureKestrel(serverOptions =>
+// {
+//     serverOptions.ListenAnyIP(10070);
+// });
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "10070";
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.ListenAnyIP(10070);
+    serverOptions.ListenAnyIP(int.Parse(port));
 });
 
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
@@ -33,21 +39,21 @@ builder.Services.AddScoped<CircuitHandler, ErrorHandlingCircuitHandler>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<GameDbContext>();
-    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+// using (var scope = app.Services.CreateScope())
+// {
+//     var db = scope.ServiceProvider.GetRequiredService<GameDbContext>();
+//     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-    try
-    {
-        db.Database.Migrate();
-        logger.LogInformation("Database migration completed successfully");
-    }
-    catch (Exception ex)
-    {
-        logger.LogError(ex, "Database migration failed. Application will continue but may have issues.");
-    }
-}
+//     try
+//     {
+//         db.Database.Migrate();
+//         logger.LogInformation("Database migration completed successfully");
+//     }
+//     catch (Exception ex)
+//     {
+//         logger.LogError(ex, "Database migration failed. Application will continue but may have issues.");
+//     }
+// }
 
 if (!app.Environment.IsDevelopment())
 {
