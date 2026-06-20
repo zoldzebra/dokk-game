@@ -1,5 +1,12 @@
 # HEDGIE 3.1
 
+## Changelog
+
+- fix: choice 126 leads to situation 14
+- restructure_game_instruction_steps
+  - új intro és komepetenciaterület képernyők a játék elején
+  - karakterválasztó képernyő szövegeinek frissítése
+
 ## Adatbázisfrissítés
 
 A játék megfelelő működéséhez a következő scripteket kell futtatni:
