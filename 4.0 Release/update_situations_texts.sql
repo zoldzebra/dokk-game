@@ -2,7 +2,7 @@ BEGIN;
 
 -- Update situation 1: Start message
 UPDATE situations
-SET situation_text = $$Elindul a közös munkátok!$$
+SET title = $$Elindul a közös munkátok!$$
 WHERE id = 1;
 
 -- Update situation 2: Online quiz evaluation data
@@ -73,7 +73,8 @@ WHERE id = 10;
 
 -- Update situation 11
 UPDATE situations
-SET title = $$Fontos eredményeket kaptunk, de jó lenne még újabb vizsgálatot is végezni a hallgatói tapasztalatok feltárásához!$$
+SET title = $$Fontos eredményeket kaptunk, de jó lenne még újabb vizsgálatot is végezni a hallgatói tapasztalatok feltárásához!$$,
+    situation_text = NULL
 WHERE id = 11;
 
 -- Add new situation referred from choice 11
