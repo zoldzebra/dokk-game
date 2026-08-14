@@ -77,10 +77,52 @@ SET title = $$Fontos eredményeket kaptunk, de jó lenne még újabb vizsgálato
     situation_text = NULL
 WHERE id = 11;
 
--- Add new situation referred from choice 11
+-- Add new situation referred from situation 11 through choice 8
 INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
 VALUES (71, 'Még egy felmérés valószínűleg már nem hozna teljesen új szempontokat, viszont csökkenti az energiád! Figyeld a továbbiakban is a pontjaid változását!', null, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 1, 11);
 
 UPDATE choices SET next_situation_id = 71 WHERE id = 8;
 
+-- Create new situation for choice 12 and a new choice for the new situation
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (72, $$Miután döntöttünk a fő fejlesztési irányról, két hét múlva találkozom Dr. Lehet Péter, oktatási dékánhelyettessel.<br></br>
+<i>- Hogyan haladtok?</i> - kérdi tőlem.$$, NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 2, NULL);
+
+INSERT INTO choices (situation_id, choice_text, next_situation_id)
+VALUES (72,
+  $$Sajnos, elakadtunk, mindenki folytatni akarja, amit eddig is csinált oktatóként, de így egyáltalán nem látjuk, hogy hogyan fog tudni javulni a hallgatói elégedettség és eredményesség. Ráadásul mindjárt kezdődik a következő félév.$$,
+  14);
+
+-- Update situation 12's choices
+UPDATE choices SET choice_text = 'Egy másik online eszközt vonjunk be, például Miro Board-t vagy egy új MI alapú szoftvert.' WHERE id = 11;
+UPDATE choices
+  SET choice_text = 'Mégse legyen online kvíz, mindenki csinálja azt, ami nála korábban bevált.',
+      next_situation_id = 72
+WHERE id = 12;
+
+-- Update situation 13 and its choice
+UPDATE situations
+SET title = $$Miután döntöttünk a fő fejlesztési irányról, két hét múlva találkozom Dr. Lehet Péter, oktatási dékánhelyettessel.<br></br>
+<i>- Hogyan haladtok?</i> - kérdi tőlem.$$
+WHERE id = 13;
+
+-- Update situation 14
+UPDATE situations
+SET title = $$Tanácstalannak érzem magam.<br></br>
+<i>Mit tegyünk, Péter?</i>$$
+  WHERE id = 14;
+
+UPDATE choices SET choice_text = 'Sajnos, elakadtunk. Talán túlzottan elmélyültünk az online eszközök adta lehetőségekben, és így nem állt össze, hogyan változtassunk a kurzusokon annak érdekében, hogy javuljon a hallgatói elégedettség és eredményesség. Ráadásul mindjárt kezdődik a következő félév, a végén kifutunk az időből.'
+  WHERE id = 13;
+
+-- Create new situation following choice 126
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (73, $$Nagyon jó fejlesztési irány, jó, hogy Dr. Lehet Péter, oktatási dékánhelyettes pont most hívta meg Horváth Gábort, aki régóta oktatásfejlesztéssel foglalkozik, hogy tartson egy módszertani workshopot.$$,
+  NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 1, 15);
+
+-- Update choice 126
+UPDATE choices SET next_situation_id = 73 WHERE id = 126;
+
 COMMIT;
+
+

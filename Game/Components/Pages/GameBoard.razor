@@ -48,7 +48,7 @@
             }
 
             <div class="situation-text">
-                <p class="title">@currentSituation.Title</p>
+                <p class="title">@((MarkupString)(currentSituation.Title ?? ""))</p>
 
                 @if (currentSituation.Text is not null && currentSituation.Text.Length > 0)
                 {
