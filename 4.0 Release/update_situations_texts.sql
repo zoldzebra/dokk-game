@@ -46,29 +46,29 @@ WHERE id = 6;
 -- Update situation 7: Student questionnaire results
 UPDATE situations
 SET title = $$A hallgatói kérdőíves vizsgálat eredményei$$,
-    situation_text = $$<p>Az érintett kurzusok hallgatóinak 72%-a (N=223) töltötte ki a kérdőívet. A megkérdezett hallgatók 34%-a jeleölte meg azt, hogy az online kvízekkel kapcsolatos <hedgie-b>élegedettségé folyamatosan csökkent</hedgie-b> a félév során. A nyitott kérdéses indoklásból kiderült, hogy a módszer játékos, interaktív jellege, továbbá a verseny éléményszérusége kezdetben motiválta a hallgatókat, hogy minél jobban agyekezzenzek megtértenini a tananyagot. Később viszont a <hedgie-b>kvízek monotonná és egyre unalmasabbá váltak</hedgie-b>, mivel sok oktató alatt ezt használta.</p>
-<p>A hallgatók 64%-a úgy vélte, hogy a <hedgie-b>kvíz inkább csak felszines aktivitást generál</hedgie-b>, nem ösztönzi a véleménylkaotást, kreativitást és problémamegoldást. 82% szerint <hedgie-b>nem képes megjeleniteni az anyag mélyebb összefüggéseit</hedgie-b>, amelyek a kurzus késöbbi résziban kulcsfontosságúva váltak. 59% gyakrabban dolgozna kicscsoportban az egyéni válaszadás helyett. A válaszadók 94%-a nem vetné el a digitális módszerek alkalmazásét, és 87% <hedgie-b>többféle módszert felválltya alkalmazna</hedgie-b> a kurzusok során. Összesen 14 különféle módszerre és eszközre érkezett javaslat.</p>$$
+    situation_text = $$<p>Az érintett kurzusok hallgatóinak 72%-a (N=223) töltötte ki a kérdőívet. A megkérdezett hallgatók 34%-a jeleölte meg azt, hogy az online kvízekkel kapcsolatos <hedgie-b>élegedettségé folyamatosan csökkent</hedgie-b> a félév során. A nyitott kérdéses indoklásból kiderült, hogy a módszer játékos, interaktív jellege, továbbá a verseny élményszerűsége kezdetben motiválta a hallgatókat, hogy minél jobban igyekezzenek megtérteni a tananyagot. Később viszont a <hedgie-b>kvízek monotonná és egyre unalmasabbá váltak</hedgie-b>, mivel sok oktató alatt ezt használta.</p>
+<p>A hallgatók 64%-a úgy vélte, hogy a <hedgie-b>kvíz inkább csak felszines aktivitást generál</hedgie-b>, nem ösztönzi a véleményalkotást, kreativitást és problémamegoldást. 82% szerint <hedgie-b>nem képes megjeleníteni az anyag mélyebb összefüggéseit</hedgie-b>, amelyek a kurzus későbbi részeiben kulcsfontosságúvá váltak. 59% gyakrabban dolgozna kiscsoportban az egyéni válaszadás helyett. A válaszadók 94%-a nem vetné el a digitális módszerek alkalmazását, és 87% <hedgie-b>többféle módszert felválltva alkalmazna</hedgie-b> a kurzusok során. Összesen 14 különféle módszerre és eszközre érkezett javaslat.</p>$$
 WHERE id = 7;
 
 -- Update situation 8: Expert consultation results
 UPDATE situations
 SET title = $$A külső szakértővel való beszélgetés eredményei$$,
-    situation_text = $$<p>A szakértői megebeszélés során világossá vált számunkra, hogy a hallgatói <hedgie-b>aktivitás növeléséhez a kurzus strukturájának átgondolása és az ehhez jól illeszkedő digitális eszközök bevzetése szükséges</hedgie-b>. A szakértő segítségével sikerült azonosítani a legnagyobb kihívásokat, mint a hallgatói értéktlenséget és a passzív hozzáállást.</p>
-<p><hedgie-b>A szakértő javasolt</hedgie-b> néhány konkrét megoldási lehetőséget is, például a <hedgie-b>blended tanulási formát</hedgie-b>, mint amelyen a <hedgie-b>fordított osztályterem</hedgie-b>, vagy az <hedgie-b>online csoportmunkát</hedgie-b> és az ehhez kötődő osztálytermi visszajelzéseket. A szakértő továbbá javasolta, hogy bármeyik új módszer, eszköz kipróbálásakor érdemes <hedgie-b>visszajelzést kérni a hallgatóktól</hedgie-b> és ahol lehet, már menet közben finomhangolni a megoldásokat.</p>$$
+    situation_text = $$<p>A szakértői megebeszélés során világossá vált számunkra, hogy a hallgatói <hedgie-b>aktivitás növeléséhez a kurzus strukturájának átgondolása és az ehhez jól illeszkedő digitális eszközök bevezetése szükséges</hedgie-b>. A szakértő segítségével sikerült azonosítani a legnagyobb kihívásokat, mint a hallgatói érdeklenséget és a passzív hozzáállást.</p>
+<p><hedgie-b>A szakértő javasolt</hedgie-b> néhány konkrét megoldási lehetőséget is, például a <hedgie-b>blended tanulási formát</hedgie-b>, mint amilyen a <hedgie-b>fordított osztályterem</hedgie-b>, vagy az <hedgie-b>online csoportmunkát</hedgie-b> és az ehhez kötődő osztálytermi visszajelzéseket. A szakértő továbbá javasolta, hogy bármeyik új módszer, eszköz kipróbálásakor érdemes <hedgie-b>visszajelzést kérni a hallgatóktól</hedgie-b> és ahol lehet, már menet közben finomhangolni a megoldásokat.</p>$$
 WHERE id = 8;
 
 -- Update situation 9: Student focus group results
 UPDATE situations
 SET title = $$Hallgatói fókuszcsoport eredményei$$,
-    situation_text = $$<p>A fókuszcsoportos interjúba vegyesen 1-2 hallgatót vontunk be a Studentia Kar szakjairól, alap- és mesterképzésről is. A beszélgetésekben a hallgatók elmondták, hogy az <hedgie-b>első hetekben érdekesnek és izgalmasnak találták az online kvízeket</hedgie-b>, elsősorban a Mekpit használatát. A játékos kvízek, a versenyhelyzet és az azonnali visszajelzés feldobta az órákat. Így éreztek, hogy az <hedgie-b>online kvíz segiti őket a tananyag atlátásában</hedgie-b>. Különösen szerettek kiscsoportban részt venni a kvízekben.</p>
-<p>Ugyanakkor <hedgie-b>idővel egyre fárasztóbbá vált számukra</hedgie-b> a sok online kvíz használata. Ráadásul a módszer <hedgie-b>inkább csak felszines aktivitást generált</hedgie-b>, de nem ösztönözte őket arra, hogy valóban elmélydjenek a tananyagban. A fókuszcsoport eredményei alapján a Mekpit kvíz kiegészítése más módszerekkel és <hedgie-b>valós szituációk beemelésével erősitheti</hedgie-b>, hogy hallgatóként érdekelődjnek és <hedgie-b>el is mélyjuljynek a tanulásban</hedgie-b>.</p>$$
+    situation_text = $$<p>A fókuszcsoportos interjúba vegyesen 1-2 hallgatót vontunk be a Studentia Kar szakjairól, alap- és mesterképzésről is. A beszélgetésekben a hallgatók elmondták, hogy az <hedgie-b>első hetekben érdekesnek és izgalmasnak találták az online kvízeket</hedgie-b>, elsősorban a Mekpit használatát. A játékos kvízek, a versenyhelyzet és az azonnali visszajelzés feldobta az órákat. Úgy érezték, hogy az <hedgie-b>online kvíz segiti őket a tananyag átlátásában</hedgie-b>. Különösen szerettek kiscsoportban részt venni a kvízekben.</p>
+<p>Ugyanakkor <hedgie-b>idővel egyre fárasztóbbá vált számukra</hedgie-b> a sok online kvíz használata. Ráadásul a módszer <hedgie-b>inkább csak felszínes aktivitást generált</hedgie-b>, de nem ösztönözte őket arra, hogy valóban elmélyedjenek a tananyagban. A fókuszcsoport eredményei alapján a Mekpit kvíz kiegészítése más módszerekkel és <hedgie-b>valós szituációk beemelésével erősitheti</hedgie-b>, hogy hallgatóként érdekelődjnek és <hedgie-b>el is mélyüljenek a tanulásban</hedgie-b>.</p>$$
 WHERE id = 9;
 
 -- Update situation 10: Joint teacher reflection and consultation results
 UPDATE situations
 SET title = $$Közös oktatói reflexió, egyeztetés eredményei$$,
-    situation_text = $$<p>A közös oktatói reflektálásra minden szakról érkezett 1-1 oktató. A legtöbb oktató egyetértett abban, hogy a hallgatók kezdetben szívesen vették részt a játékban, különösen a versenyelemet és a valós idejű visszajelzés miatt. Többen kiemeltek, hogy a <hedgie-b>módszer teljesítménykózpontú viselkedésre ösztönözte a hallgatókat</hedgie-b>, akik gyakran a jó pontszám elérésére törekedtek anélkül, hogy teljes mértékben megértették volna a mögöttes tartalmat. Sokan úgy éreztek, hogy míg a kvízek alapvető ismeretek átismétlésére hatékonyak voltak, az <hedgie-b>elmélyültebb tanulás, a kritikus gondolkodás vagy az értelmes vita előségitésére kevésé</hedgie-b>.</p>
-<p>Bár az oktatók nyitottak maradtak a digitális és interaktív eszközökre, javasol ták, hogy a <hedgie-b>Mekpit-t elsősorban bemelgitésére, formatív ellenörzésre vagy kulcsfogalmak attekintésére használják</hedgie-b>. A közös ülésén számos gyakorlati javaslat is felszínre került, például a kvíz kombinálása csoportos feladatokkal, esetmegbeszélésékkel vagy projektmunkával a mélyebb megértés támogatása érdekében.</p>$$
+    situation_text = $$<p>A közös oktatói reflektálásra minden szakról érkezett 1-1 oktató. A legtöbb oktató egyetértett abban, hogy a hallgatók kezdetben szívesen vettek részt a játékban, különösen a versenyelemek és a valós idejű visszajelzés miatt. Többen kiemeltek, hogy a <hedgie-b>módszer teljesítményközpontú viselkedésre ösztönözte a hallgatókat</hedgie-b>, akik gyakran a jó pontszám elérésére törekedtek anélkül, hogy teljes mértékben megértették volna a mögöttes tartalmat. Sokan úgy éreztek, hogy míg a kvízek alapvető ismeretek átismétlésére hatékonyak voltak, az <hedgie-b>elmélyültebb tanulás, a kritikus gondolkodás vagy az értelmes vita előségitésére kevéssé</hedgie-b>.</p>
+<p>Bár az oktatók nyitottak maradtak a digitális és interaktív eszközökre, javasolták, hogy a <hedgie-b>Mekpit-t elsősorban bemelegitésére, formatív ellenőrzésre vagy kulcsfogalmak áttekintésére használják</hedgie-b>. A közös ülésen számos gyakorlati javaslat is felszínre került, például a kvíz kombinálása csoportos feladatokkal, esetmegbeszélésekkel vagy projektmunkával a mélyebb megértés támogatása érdekében.</p>$$
 WHERE id = 10;
 
 -- Update situation 11
@@ -122,6 +122,24 @@ VALUES (73, $$Nagyon jó fejlesztési irány, jó, hogy Dr. Lehet Péter, oktat�
 
 -- Update choice 126
 UPDATE choices SET next_situation_id = 73 WHERE id = 126;
+
+-- Update situation 15
+UPDATE situations
+SET title = $$Szerda délután Gábor tart egy módszertani workshopot...$$,
+    situation_text = $$<p>Számos módszer előkerül, melyek túlmutatnak egy online kvíz használatán és segítenek a hallgatói motiváció és aktivitás fenntartásaban. Te is <hedgie-b>válassz</hedgie-b> ezek közül <hedgie-b>hármat, amit hasznosnak ítélsz</hedgie-b> a kurzusod átálakitásához!</p>$$
+WHERE id = 15;
+
+-- Update situation 17 to info type and create a new situation after it to contain the minigame itself.
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (74, $$Válaszd ki, hogy az általad fontosnak tartott módszerekhez milyen célok és értékelési forma illeszkedik legjobban!$$,
+  $$<p><hedgie-b>Húzd be a kártyákat a megfelelő helyre!</hedgie-b> Ha zöld színűre vált, akkor helyes a megoldás.</p>$$, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 4, 18);
+
+UPDATE situations
+SET title = $$A konzultáción Gábor felhívja a figyelmeteket arra, hogy ahhoz, hogy a hallgatók aktív bevonódását eredményesen tudjátok segíteni még egy további szempontot kell átgondolnotok...$$,
+    situation_text = $$<p>Ez az elmélet a konstruktív összehangolás, ami szerint nem elég a módszerek végiggondolása, hanem az előre meghatározott <hedgie-b>hallgatói tanulási eredmények</hedgie-b> alapján szükséges tervezni az értékelést, valamint a tanulási eredmények fejlődését biztositó <hedgie-b>módszereket</hedgie-b>, tanulási tevékenységeket és tanulástámogatást. Azzal tudjuk előségíteni egy kurzuson belül a tanulási eredmények (tudás, képesség, attitűd) hatékony fejlődését, ha olyan hallgatói tevékenységeket, módszereket kínálunk, ami az adott kompetenciát valóban fejleszti és ehhez olyan <hedgie-b>értékelési formát</hedgie-b> párosítunk, ami az adott területen bekövetkezett változásra ad visszajelzést.</p>$$,
+    situation_type = 1,
+    next_situation_id = 74
+WHERE id = 17;
 
 COMMIT;
 
