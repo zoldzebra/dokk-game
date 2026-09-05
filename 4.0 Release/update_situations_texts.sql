@@ -141,6 +141,25 @@ SET title = $$A konzultáción Gábor felhívja a figyelmeteket arra, hogy ahhoz
     next_situation_id = 74
 WHERE id = 17;
 
+-- Update situation 18 so its choices lead to different results before moving on to situation 19.
+UPDATE situations
+SET title = $$Miután már sok új oktatási szempontról tanultatok a workshopon, először közösen álltok neki egy mintatematika elkészítésének. A Bizonytalanság természete c. tantárgy leírásáról két változat készül el. Melyiket tartod szakszerűbbnek a tanult konstruktív összehangolás alapján?$$,
+    situation_text = NULL
+WHERE id = 18;
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (75, $$Jól sikerült összehangolni a módszertant a kurzus céljaival és értékelésével.$$,
+  NULL, 'word.jpg', FALSE, FALSE, FALSE, 1, 19);
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (76, $$Tartalmas a tematika, de nem sikerült a célokat, módszereket és értékelést teljesen összhangba hozni. Erre érdemes figyelni, mert segít az újítás sikeres megvalósításában!$$,
+  NULL, 'word.jpg', FALSE, FALSE, FALSE, 1, 19);
+
+-- A tematika jumps to situation 75
+UPDATE choices SET next_situation_id = 75 WHERE id = 27;
+-- B tematika jumps to situation 76
+UPDATE choices SET next_situation_id = 76 WHERE id = 28;
+
 COMMIT;
 
 
