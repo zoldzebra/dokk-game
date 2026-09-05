@@ -160,6 +160,18 @@ UPDATE choices SET next_situation_id = 75 WHERE id = 27;
 -- B tematika jumps to situation 76
 UPDATE choices SET next_situation_id = 76 WHERE id = 28;
 
+-- Update situation 19 texts and choices
+UPDATE situations
+SET title = $$A csapat közös ebédeléssel ünnepli meg, hogy még a félév kezdete előtt, sikerült mindannyiotoknak elkészülni a kurzusaitok megújított tematikáival.$$,
+    situation_text = $$<p>Az ebéd utáni <hedgie-b>lelkes beszélgetés</hedgie-b> során egyik kollégád felveti, hogy az <hedgie-b>új tematikák kialakításába</hedgie-b> végülis a <hedgie-b>hallgatókat</hedgie-b> eddig <hedgie-b>nem vontátok be</hedgie-b>, ami talán baj. Te <hedgie-b>mit gondolsz</hedgie-b> erről?</p>$$
+WHERE id = 19;
+
+UPDATE choices SET choice_text = $$Fontos, a hallgatók bevonása, de a kurzus tervezéséhez mi értünk. Arra persze figyeljünk, hogy rendszeresen kérjünk tőlük visszajelzést a megvalósítás során is.$$ WHERE id = 29;
+UPDATE choices SET choice_text = $$Igen, talán már a kurzusok tervezésébe is be lehet vonni a hallgatókat, hiszen nemcsak jó ötleteik lehetnek, hanem ezáltal a hallgatók is fejlődhetnek, például kezdeményezőkészségben, innovativitásban.$$ WHERE id = 30;
+
+-- Update situation 20 title
+UPDATE situations
+SET title = $$Nemsokára élesben is kipróbálhatjuk a megújult kurzusok tervét. Előtte szeretnél visszajelzést kérni az eddigi munkádról és fejlődésedről a fejlesztői csapatod többi tagjától?$$
+WHERE id = 20;
+
 COMMIT;
-
-
