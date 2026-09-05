@@ -1,0 +1,309 @@
+@page "/debug/jump"
+@rendermode InteractiveServer
+@using Game.Models
+@using Game.Services
+@using Microsoft.Extensions.Hosting
+
+@inject GameService GameService
+@inject GameState GameState
+@inject NavigationManager Navigation
+@inject IHostEnvironment HostEnvironment
+@inject ILogger<DebugJump> Logger
+
+<PageTitle>Fejlesztői ugrás</PageTitle>
+
+@if (!HostEnvironment.IsDevelopment())
+{
+    <div class="main-container debug-jump-page">
+        <div class="alert alert-info">
+            Ez az oldal csak fejlesztői környezetben érhető el.
+        </div>
+    </div>
+}
+else if (isLoading)
+{
+    <div class="main-container debug-jump-page">
+        <div class="text-center py-5">
+            <div class="spinner-border" role="status"></div>
+            <p class="mt-3 text-muted">Fejlesztői eszköz betöltése...</p>
+        </div>
+    </div>
+}
+else if (player is null)
+{
+    <div class="main-container debug-jump-page">
+        <div class="alert alert-info">
+            Nincs aktív játékos. <a href="/setup">Alkoss egy karaktert</a> a folytatáshoz!
+        </div>
+    </div>
+}
+else
+{
+    <div class="main-container debug-jump-page">
+        <section class="text-container-outer">
+            <div class="text-container-inner debug-jump-content">
+                <h1>Szituáció átugrása</h1>
+                <p>
+                    Ez a fejlesztői eszköz közvetlenül átállítja az aktuális szituációt.
+                    A statisztikák, a döntési előzmények és a teljesítési állapot változatlan maradnak.
+                </p>
+
+                @if (!string.IsNullOrWhiteSpace(errorMessage))
+                {
+                    <div class="alert alert-danger">@errorMessage</div>
+                }
+
+                @if (situations.Count == 0)
+                {
+                    <div class="alert alert-warning">Nem találhatók szituációk.</div>
+                }
+                else
+                {
+                    <div class="debug-jump-field">
+                        <label for="target-situation">Cél szituáció</label>
+                        <select id="target-situation"
+                                class="form-select"
+                                value="@selectedSituationId"
+                                @onchange="OnSituationChanged">
+                            <option value="0">Válassz egy szituációt...</option>
+                            @foreach (var situation in situations)
+                            {
+                                <option value="@situation.Id">@GetSituationLabel(situation)</option>
+                            }
+                        </select>
+                    </div>
+
+                    @if (selectedSituation is not null)
+                    {
+                        <div class="debug-jump-details-label">Részletek</div>
+                        <div class="debug-jump-details">
+                            <p>
+                                <strong>Jelenlegi:</strong>
+                                @GetSituationLabel(situations.FirstOrDefault(s => s.Id == player.CurrentSituationId))
+                            </p>
+                            <p>
+                                <strong>Típus:</strong> @GetSituationTypeLabel(selectedSituation.Type)
+                                <span class="debug-jump-separator">|</span>
+                                <strong>Azonosító:</strong> @selectedSituation.Id
+                            </p>
+
+                            @{
+                                var warnings = GetWarnings(selectedSituation).ToList();
+                            }
+                            @if (warnings.Count > 0)
+                            {
+                                <div class="alert alert-warning">
+                                    <strong>Figyelmeztetés:</strong>
+                                    <ul>
+                                        @foreach (var warning in warnings)
+                                        {
+                                            <li>@warning</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    <div class="continue-wrapper">
+                        <button class="fancy-light"
+                                type="button"
+                                @onclick="JumpAsync"
+                                disabled="@(selectedSituation is null || isProcessing)">
+                            <div class="shine" />
+                            @(isProcessing ? "Ugrás..." : "Ugrás a szituációhoz →")
+                        </button>
+                    </div>
+                }
+            </div>
+        </section>
+    </div>
+}
+
+@code {
+    private readonly List<Situation> situations = new();
+    private Player? player;
+    private Situation? selectedSituation;
+    private int selectedSituationId;
+    private bool hasMinigameData;
+    private bool isLoading = true;
+    private bool isProcessing;
+    private string? errorMessage;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        try
+        {
+            if (!HostEnvironment.IsDevelopment())
+            {
+                Navigation.NavigateTo("/play", forceLoad: true);
+                return;
+            }
+
+            if (!await EnsurePlayerAsync())
+            {
+                return;
+            }
+
+            var situationResult = await GameService.GetDebugSituationsAsync();
+            if (!situationResult.Success)
+            {
+                errorMessage = situationResult.ErrorMessage;
+                return;
+            }
+
+            situations.AddRange(situationResult.Situations);
+            selectedSituationId = player!.CurrentSituationId;
+            selectedSituation = situations.FirstOrDefault(s => s.Id == selectedSituationId);
+
+            if (situations.Any(s => s.Type == SituationType.Minigame))
+            {
+                var minigameData = await GameService.GetMinigameDataAsync(player);
+                hasMinigameData = minigameData.Count > 0;
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError(ex, "Error initializing debug jump page for player {PlayerId}", player?.Id);
+            errorMessage = "A fejlesztői eszköz betöltése közben hiba történt.";
+        }
+        finally
+        {
+            isLoading = false;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task<bool> EnsurePlayerAsync()
+    {
+        if (GameState.CurrentPlayer is not null)
+        {
+            player = GameState.CurrentPlayer;
+            return true;
+        }
+
+        if (await GameState.RestorePlayerAsync())
+        {
+            player = GameState.CurrentPlayer;
+            return player is not null;
+        }
+
+        Navigation.NavigateTo("/setup", forceLoad: true);
+        return false;
+    }
+
+    private void OnSituationChanged(ChangeEventArgs args)
+    {
+        if (!int.TryParse(args.Value?.ToString(), out var situationId))
+        {
+            selectedSituationId = 0;
+            selectedSituation = null;
+            return;
+        }
+
+        selectedSituationId = situationId;
+        selectedSituation = situations.FirstOrDefault(s => s.Id == situationId);
+        errorMessage = null;
+    }
+
+    private async Task JumpAsync()
+    {
+        if (player is null || selectedSituation is null || isProcessing)
+        {
+            return;
+        }
+
+        isProcessing = true;
+        errorMessage = null;
+
+        try
+        {
+            var (success, updatedPlayer, serviceError) =
+                await GameService.JumpToSituationAsync(player, selectedSituation.Id);
+
+            if (!success)
+            {
+                errorMessage = serviceError;
+                return;
+            }
+
+            player = updatedPlayer;
+            await GameState.UpdatePlayerAsync(player);
+            Navigation.NavigateTo("/play");
+        }
+        finally
+        {
+            isProcessing = false;
+        }
+    }
+
+    private bool IsChoiceTaken(Choice choice)
+    {
+        return player?.Decisions.Any(d => d.ChoiceId == choice.Id) ?? false;
+    }
+
+    private IEnumerable<string> GetWarnings(Situation situation)
+    {
+        if (situation.IsHalftime)
+        {
+            yield return "Ez félidős képernyő; a Tovább gomb a /results oldalra navigál.";
+        }
+
+        if (situation.IsTerminal)
+        {
+            yield return "Ez terminális képernyő; a továbblépés lezárhatja a játékot és a ranglistára navigálhat.";
+        }
+
+        var takenChoices = situation.Choices.Count(IsChoiceTaken);
+        if (takenChoices > 0)
+        {
+            yield return $"{takenChoices} ehhez a szituációhoz tartozó döntés már szerepel a játékos előzményeiben.";
+        }
+
+        if ((situation.Type is SituationType.Decision or SituationType.Conversation)
+            && situation.Choices.Count > 0
+            && takenChoices == situation.Choices.Count)
+        {
+            yield return "Minden választási lehetőség korábban már rögzítésre került, ezért ez a képernyő nem biztos, hogy továbbenged.";
+        }
+
+        if (situation.Type == SituationType.Special && takenChoices > 0)
+        {
+            yield return "A jelenlegi multi-select képernyő korábban már használt választásokat tartalmaz, ezért a normál UI nem jelenít meg megerősítő gombot.";
+        }
+
+        if (situation.Type == SituationType.Minigame && !hasMinigameData)
+        {
+            yield return "A minijátékhoz nem találhatók korábbi Special választások; a minijáték üresen jelenhet meg.";
+        }
+    }
+
+    private static string GetSituationLabel(Situation? situation)
+    {
+        if (situation is null)
+        {
+            return "Ismeretlen";
+        }
+
+        var title = string.IsNullOrWhiteSpace(situation.Title) ? "(cím nélkül)" : situation.Title;
+        return $"{situation.Id}: {GetSituationTypeLabel(situation.Type)} - {title}";
+    }
+
+    private static string GetSituationTypeLabel(SituationType type)
+    {
+        return type switch
+        {
+            SituationType.Info => "Info",
+            SituationType.Conversation => "Conversation",
+            SituationType.Decision => "Decision",
+            SituationType.Minigame => "Minigame",
+            SituationType.Special => "Special / multi-select",
+            _ => type.ToString()
+        };
+    }
+}

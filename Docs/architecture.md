@@ -39,3 +39,8 @@
 ### Renderelési mód
 - **Interactive server**: Valós idejű szerveroldali renderelés SignalR kommunikációval.
 
+### Fejlesztői szituáció-ugrás
+- **Útvonal**: A `/debug/jump` oldal csak Development környezetben érhető el.
+- **Működés**: A fejlesztő bármelyik szituációt kiválaszthatja, majd a játékos közvetlenül arra a képernyőre kerül.
+- **Megőrzött állapot**: Az ugrás kizárólag a `players.current_situation_id` értékét módosítja; a statisztikák, a döntési előzmények és a teljesítési állapot változatlanok maradnak.
+- **Figyelmeztetések**: Az oldal jelzi, ha a célképernyőhöz korábbi Special választások szükségesek, ha már rögzített döntések befolyásolhatják a gombokat, illetve ha félidős vagy terminális képernyőre történik az ugrás.
