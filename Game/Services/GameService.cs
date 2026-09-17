@@ -94,6 +94,64 @@ public class GameService(GameDbContext context, ILogger<GameService> logger)
         }
     }
 
+    public async Task<(bool Success, List<Situation> Situations, string? ErrorMessage)> GetDebugSituationsAsync()
+    {
+        try
+        {
+            var situations = await _context.Situations
+                .AsNoTracking()
+                .Include(s => s.Choices)
+                .OrderBy(s => s.Id)
+                .ToListAsync();
+
+            return (true, situations, null);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving situations for debug jump selector");
+            return (false, new List<Situation>(), "Unable to load situations.");
+        }
+    }
+
+    public async Task<(bool Success, Player Player, string? ErrorMessage)> JumpToSituationAsync(
+        Player player, int situationId)
+    {
+        var previousSituationId = player.CurrentSituationId;
+
+        try
+        {
+            var situationExists = await _context.Situations
+                .AsNoTracking()
+                .AnyAsync(s => s.Id == situationId);
+
+            if (!situationExists)
+            {
+                return (false, player, "Situation not found.");
+            }
+
+            player.CurrentSituationId = situationId;
+            _context.Update(player);
+            await _context.SaveChangesAsync();
+            return (true, player, null);
+        }
+        catch (DatabaseOperationException ex)
+        {
+            player.CurrentSituationId = previousSituationId;
+            _logger.LogError(ex, "Database error jumping player {PlayerId} to situation {SituationId}",
+                player.Id, situationId);
+            _context.Entry(player).State = EntityState.Unchanged;
+            return (false, player, "Unable to save the jump. Please try again.");
+        }
+        catch (Exception ex)
+        {
+            player.CurrentSituationId = previousSituationId;
+            _logger.LogError(ex, "Unexpected error jumping player {PlayerId} to situation {SituationId}",
+                player.Id, situationId);
+            _context.Entry(player).State = EntityState.Unchanged;
+            return (false, player, "An unexpected error occurred. Please try again.");
+        }
+    }
+
     public async Task<(bool Success, Player Player, string? ErrorMessage)> ProceedAsync(Player player, int situationId)
     {
         try

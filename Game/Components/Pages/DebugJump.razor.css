@@ -1,0 +1,89 @@
+.debug-jump-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    padding: 96px 24px 40px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.debug-jump-page .text-container-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 960px;
+    padding: 0;
+}
+
+.debug-jump-page .text-container-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 24px;
+    padding: 32px;
+}
+
+.debug-jump-content {
+    box-sizing: border-box;
+    max-width: 760px;
+}
+
+.debug-jump-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+}
+
+.debug-jump-field label {
+    font-weight: 700;
+}
+
+.debug-jump-field select {
+    min-height: 46px;
+    padding: 8px 12px;
+    border: 1px solid var(--cobalt-500);
+    border-radius: 10px;
+    background: var(--powder-50);
+    color: var(--cobalt-900);
+    font-weight: 600;
+}
+
+.debug-jump-details {
+    margin-top: 8px;
+    padding: 16px;
+    border: 1px solid var(--cobalt-200);
+    border-radius: 12px;
+    background: var(--powder-50);
+    color: var(--cobalt-900);
+}
+
+.debug-jump-details-label {
+    margin-top: 20px;
+    font-weight: 700;
+}
+
+.debug-jump-details p {
+    margin-bottom: 8px;
+}
+
+.debug-jump-details p:last-of-type {
+    margin-bottom: 0;
+}
+
+.debug-jump-details .alert {
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+.debug-jump-details ul {
+    margin-bottom: 0;
+}
+
+.debug-jump-separator {
+    margin: 0 8px;
+}
