@@ -39,6 +39,18 @@
     overflow: visible;
 }
 
+.stat-value-group {
+    position: relative;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    gap: 1px;
+}
+
+.stat-has-delta {
+    z-index: 1000;
+}
+
     .player-stat .stat-icon {
         width: 36px;
         height: 36px;
@@ -68,6 +80,39 @@
         transform: translateX(-50%) translateY(-10px);
         pointer-events: auto;
     }
+
+.stat-delta {
+    position: absolute;
+    top: -15px;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    min-width: 29px;
+    height: 23px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+    border: 1px solid;
+    border-radius: 999px;
+    font-size: 0.76rem;
+    font-weight: 900;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.25);
+    animation: stat-delta-pop 5.2s ease-in-out forwards;
+}
+
+.stat-change-increase {
+    color: var(--emerald-50);
+    background: var(--emerald-500);
+    border-color: var(--emerald-300);
+}
+
+.stat-change-decrease {
+    color: var(--rose-50);
+    background: var(--rose-500);
+    border-color: var(--rose-300);
+}
 
 .stat-energy {
     color: var(--emerald-200);
@@ -125,38 +170,25 @@
     opacity: 0.15;
 }
 
-.stat-arrow {
-    position: absolute;
-    top: -10px;
-    right: -3px;
-    width: 18px;
-    animation: fade-out 2.6s ease-in-out forwards;
-}
-
-@keyframes fade-out {
+@keyframes stat-delta-pop {
     0% {
         opacity: 0;
-        transform: translateY(0);
+        transform: scale(0.7) translateY(4px);
     }
 
-    30% {
+    15%, 75% {
         opacity: 1;
-        transform: translateY(0);
-    }
-
-    70% {
-        opacity: 1;
-        transform: translateY(-3px);
+        transform: scale(1) translateY(0);
     }
 
     100% {
         opacity: 0;
-        transform: translateY(-3px);
+        transform: scale(0.95) translateY(-4px);
     }
 }
 
 .stat-shake {
-    animation: shake 0.5s ease-in-out;
+    animation: shake 0.5s ease-in-out 8;
 }
 
 @keyframes shake {
@@ -168,5 +200,12 @@
     }
     20%, 40%, 60%, 80% {
         transform: rotate(2deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .stat-delta,
+    .stat-shake {
+        animation: none;
     }
 }

@@ -8,25 +8,35 @@
             var canonical = stat.Value.Canonical.ToLower();
             var iconPath = $"src/Icons/{canonical}.png";
             var cssClass = $"player-stat stat-{canonical}";
-            
-            if (_deltas.ContainsKey(stat.Value.Canonical))
+            var delta = 0;
+            var hasDelta = ShowDeltaFeedback
+                && _deltas.TryGetValue(stat.Value.Canonical, out delta);
+            var valueClass = hasDelta ? "stat-value-group stat-shake" : "stat-value-group";
+
+            if (hasDelta)
             {
-                cssClass += " stat-shake";
+                cssClass += " stat-has-delta";
             }
 
-            var arrow = GetArrow(stat.Value.Canonical);
+            <div class="@cssClass"
+                 role="group"
+                 aria-label="@GetStatAriaLabel(stat.Key, stat.Value.Value, hasDelta ? delta : null)">
+                <div class="@valueClass">
+                    <div class="shine" />
+                    <img src="@iconPath" class="stat-icon" alt="" aria-hidden="true" />
+                    <span class="value">@stat.Value.Value</span>
+                </div>
 
-            <div class="@cssClass">
-                <div class="shine" />
-                <img src="@iconPath" class="stat-icon" />
-                <span class="value">@stat.Value.Value</span>
-
-                @if (arrow is not null)
+                @if (hasDelta)
                 {
-                    <img src="@arrow" class="stat-arrow" />
+                    <span @key="GetDeltaFeedbackKey(stat.Value.Canonical)"
+                          class="stat-delta @GetDeltaClass(delta)"
+                          aria-hidden="true">
+                        @FormatDelta(delta)
+                    </span>
                 }
 
-                <div class="tooltip tooltip-top">
+                <div class="tooltip tooltip-top" aria-hidden="true">
                     @stat.Key
                 </div>
             </div>
@@ -38,8 +48,13 @@
     [Parameter]
     public Stats? Stats { get; set; }
 
+    [Parameter]
+    public bool ShowDeltaFeedback { get; set; } = true;
+
     private Dictionary<string, int> _previousValues = new();
     private Dictionary<string, int> _deltas = new();
+    private const int DeltaDisplayDurationMilliseconds = 5200;
+    private int _deltaVersion;
 
     protected override void OnParametersSet()
     {
@@ -48,42 +63,72 @@
         var current = Stats.AsDictionary()
             .ToDictionary(s => s.Value.Canonical, s => s.Value.Value);
 
+        if (!ShowDeltaFeedback)
+        {
+            _previousValues = current;
+            _deltas.Clear();
+            _deltaVersion++;
+            return;
+        }
+
         if (_previousValues.Count == 0)
         {
             _previousValues = current;
             return;
         }
 
+        var changedDeltas = new Dictionary<string, int>();
         foreach (var (key, value) in current)
         {
             if (_previousValues.TryGetValue(key, out var prev))
             {
                 if (prev != value)
                 {
-                    _deltas[key] = value - prev;
-                    _ = ClearDeltaAfterDelay(key);
+                    changedDeltas[key] = value - prev;
                 }
             }
         }
 
         _previousValues = current;
+
+        if (changedDeltas.Count > 0)
+        {
+            _deltas = changedDeltas;
+            var version = ++_deltaVersion;
+            _ = ClearDeltasAfterDelay(version);
+        }
     }
 
-    private string? GetArrow(string canonical)
-    {
-        if (!_deltas.TryGetValue(canonical, out var delta))
-            return null;
+    private static string FormatDelta(int delta)
+        => delta > 0 ? $"+{delta}" : delta.ToString();
 
-        return delta > 0
-            ? "src/Icons/arrow-increase.svg"
-            : "src/Icons/arrow-decrease.svg";
+    private static string GetDeltaClass(int delta)
+        => delta > 0 ? "stat-change-increase" : "stat-change-decrease";
+
+    private string GetDeltaFeedbackKey(string canonical)
+        => $"{canonical}-delta-{_deltaVersion}";
+
+    private static string GetStatAriaLabel(string label, int value, int? delta)
+    {
+        if (delta is null)
+        {
+            return $"{label}: {value}.";
+        }
+
+        var direction = delta > 0 ? "növekedett" : "csökkent";
+        return $"{label}: {value}, {direction} {Math.Abs(delta.Value)}.";
     }
 
-    private async Task ClearDeltaAfterDelay(string key)
+    private async Task ClearDeltasAfterDelay(int version)
     {
-        await Task.Delay(1600);
-        _deltas.Remove(key);
+        await Task.Delay(DeltaDisplayDurationMilliseconds);
+
+        if (version != _deltaVersion)
+        {
+            return;
+        }
+
+        _deltas.Clear();
         await InvokeAsync(StateHasChanged);
     }
 }
-
