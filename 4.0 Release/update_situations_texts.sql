@@ -141,6 +141,103 @@ SET title = $$A konzultáción Gábor felhívja a figyelmeteket arra, hogy ahhoz
     next_situation_id = 74
 WHERE id = 17;
 
+-- Update situation 18 so its choices lead to different results before moving on to situation 19.
+UPDATE situations
+SET title = $$Miután már sok új oktatási szempontról tanultatok a workshopon, először közösen álltok neki egy mintatematika elkészítésének. A Bizonytalanság természete c. tantárgy leírásáról két változat készül el. Melyiket tartod szakszerűbbnek a tanult konstruktív összehangolás alapján?$$,
+    situation_text = NULL
+WHERE id = 18;
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (75, $$Jól sikerült összehangolni a módszertant a kurzus céljaival és értékelésével.$$,
+  NULL, 'word.jpg', FALSE, FALSE, FALSE, 1, 19);
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (76, $$Tartalmas a tematika, de nem sikerült a célokat, módszereket és értékelést teljesen összhangba hozni. Erre érdemes figyelni, mert segít az újítás sikeres megvalósításában!$$,
+  NULL, 'word.jpg', FALSE, FALSE, FALSE, 1, 19);
+
+-- A tematika jumps to situation 75
+UPDATE choices SET next_situation_id = 75 WHERE id = 27;
+-- B tematika jumps to situation 76
+UPDATE choices SET next_situation_id = 76 WHERE id = 28;
+
+-- Update situation 19 texts and choices
+UPDATE situations
+SET title = $$A csapat közös ebédeléssel ünnepli meg, hogy még a félév kezdete előtt, sikerült mindannyiotoknak elkészülni a kurzusaitok megújított tematikáival.$$,
+    situation_text = $$<p>Az ebéd utáni <hedgie-b>lelkes beszélgetés</hedgie-b> során egyik kollégád felveti, hogy az <hedgie-b>új tematikák kialakításába</hedgie-b> végülis a <hedgie-b>hallgatókat</hedgie-b> eddig <hedgie-b>nem vontátok be</hedgie-b>, ami talán baj. Te <hedgie-b>mit gondolsz</hedgie-b> erről?</p>$$
+WHERE id = 19;
+
+UPDATE choices SET choice_text = $$Fontos, a hallgatók bevonása, de a kurzus tervezéséhez mi értünk. Arra persze figyeljünk, hogy rendszeresen kérjünk tőlük visszajelzést a megvalósítás során is.$$ WHERE id = 29;
+UPDATE choices SET choice_text = $$Igen, talán már a kurzusok tervezésébe is be lehet vonni a hallgatókat, hiszen nemcsak jó ötleteik lehetnek, hanem ezáltal a hallgatók is fejlődhetnek, például kezdeményezőkészségben, innovativitásban.$$ WHERE id = 30;
+
+-- Update situation 20 title
+UPDATE situations
+SET title = $$Nemsokára élesben is kipróbálhatjuk a megújult kurzusok tervét. Előtte szeretnél visszajelzést kérni az eddigi munkádról és fejlődésedről a fejlesztői csapatod többi tagjától?$$
+WHERE id = 20;
+
+-- Update situation 21 texts and choices
+UPDATE situations
+SET title = $$Kezdődik a félév, újra összeült a fejlesztői csapatotok...$$,
+    situation_text = $$<p>A beszélgetés arról folyik, hogy <hedgie-b>milyen gyakran találkozzatok</hedgie-b>. Te mit <hedgie-b>javasolsz</hedgie-b>?</p>$$
+WHERE id = 21;
+
+UPDATE choices SET choice_text = $$Találkozzunk havonta és a találkozók előtt szedjük össze, hogy éppen milyen témáról érdemes egyeztetni. Így mindenki tud készülni a megbeszélésre.$$ WHERE id = 34;
+
+-- Update situation 22 texts and choices, reroute success choices through a new situation (77)
+UPDATE situations
+SET title = $$A fejlesztői csapat minden tagja elkészült a pilot kurzusával. A te kurzusod is elindul! Hogyan szeretnéd bemutatni a kurzus újításait a hallgatóidnak?$$
+WHERE id = 22;
+
+-- Insert a new situation coming from 22 and going to 23
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (77, $$Az óra után örülsz, mert hallod, hogy a hallgatók elégedettek, mivel megosztottad velük a kurzus újításait.$$,
+        NULL, 'folyoso_interakc io.png', FALSE, FALSE, FALSE, 1, 23);
+
+UPDATE choices
+SET next_situation_id = 77
+WHERE id = 37;
+
+UPDATE choices
+SET choice_text = $$Nem magyarázok, hanem belehelyezem őket egy általam kitalált „mini szimuláció”-ba, hogy megtapasztalhassák az új tanulási irányt, majd kérem, hogy reflektáljanak erre.$$,
+    next_situation_id = 77
+WHERE id = 38;
+
+UPDATE choices
+SET choice_text = $$Készítek egy rövid igényfelmérést a hallgatóim körében, hogy lássam, mire van szükségük.$$,
+    next_situation_id = 77
+WHERE id = 39;
+
+UPDATE choices SET choice_text = $$A legjobb, ha elkezdem a tanítást, majd menet közben megértik a hallgatók, hogy miről szól a megújított módszertan.$$ WHERE id = 40;
+
+-- -- Update situation 23 texts and choices (WIP)
+-- UPDATE situations
+-- SET title = $$Elindultak a pilot kurzusok, már egy hónap is eltelt a félévből, így elérkeztetek a fejlesztői csapat első találkozásáig...$$,
+--     situation_text = $$<p>Mindenki <hedgie-b>számos nehézségről számol be</hedgie-b> az új módszerek kapcsán. Számodra mi <hedgie-b>jelentette</hedgie-b> eddig a <hedgie-b>legnagyobb problémát</hedgie-b>?</p>$$
+-- WHERE id = 23;
+
+-- UPDATE choices
+-- SET choice_text = $$Mindig van valamilyen technikai probléma, nem minden hallgatónál működik a wifi, a QR kód beolvasással is adódnak gondjaik.$$
+-- WHERE id = 42;
+
+-- UPDATE choices
+-- SET next_situation_id = 70
+-- WHERE id = 43;
+
+-- UPDATE choices
+-- SET choice_text = $$Elbizonytalanodtam az új módszerrel kapcsolatban, még nem érzem magam elég felkészültnek a használatához.$$
+-- WHERE id = 44;
+
+-- -- remove this choice (situation 1 does not show choices)
+-- UPDATE choices
+-- SET situation_id = 1
+-- WHERE id = 45;
+
+-- UPDATE choices
+-- SET choice_text = $$Bár a hallgatók szívesen fogadták az újításokat, mostanra már alig tesznek az órákba energiát.$$
+-- WHERE id = 46;
+
+-- UPDATE choices
+-- SET choice_text = $$A hallgatók sose aktívak, nem vesznek részt az új feladatokban, mindenki elutasítja az új feladatokat.$$
+-- WHERE id = 47;
+
+
 COMMIT;
-
-
