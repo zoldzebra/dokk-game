@@ -22,6 +22,19 @@ SET title = $$A fejlesztői csapatotok megkapja az online kvízek bevezetéséve
 „Idegesít az időmérés, <hedgie-b>nem szeretek kapkodni</hedgie-b>, stresszel. Szerintem ez nem lóverseny. Vagy mégis?"</p>$$
 WHERE id = 2;
 
+-- Update choice texts
+UPDATE choices
+SET choice_text = $$Hallgatói kérdőív$$
+WHERE id = 4;
+
+UPDATE choices
+SET choice_text = $$Hallgatói fókuszcsoportos interjú$$
+WHERE id = 6;
+
+UPDATE choices
+SET choice_text = $$Közös oktatói reflexió, egyeztetés$$
+WHERE id = 7;
+
 -- Update situation 3
 UPDATE situations
 SET title = $$Az OMHV eredményei alapján el tudjátok kezdeni a kurzusok fejlesztését?$$
@@ -46,8 +59,13 @@ WHERE id = 6;
 -- Update situation 7: Student questionnaire results
 UPDATE situations
 SET title = $$A hallgatói kérdőíves vizsgálat eredményei$$,
-    situation_text = $$<p>Az érintett kurzusok hallgatóinak 72%-a (N=223) töltötte ki a kérdőívet. A megkérdezett hallgatók 34%-a jeleölte meg azt, hogy az online kvízekkel kapcsolatos <hedgie-b>élegedettségé folyamatosan csökkent</hedgie-b> a félév során. A nyitott kérdéses indoklásból kiderült, hogy a módszer játékos, interaktív jellege, továbbá a verseny élményszerűsége kezdetben motiválta a hallgatókat, hogy minél jobban igyekezzenek megtérteni a tananyagot. Később viszont a <hedgie-b>kvízek monotonná és egyre unalmasabbá váltak</hedgie-b>, mivel sok oktató alatt ezt használta.</p>
-<p>A hallgatók 64%-a úgy vélte, hogy a <hedgie-b>kvíz inkább csak felszines aktivitást generál</hedgie-b>, nem ösztönzi a véleményalkotást, kreativitást és problémamegoldást. 82% szerint <hedgie-b>nem képes megjeleníteni az anyag mélyebb összefüggéseit</hedgie-b>, amelyek a kurzus későbbi részeiben kulcsfontosságúvá váltak. 59% gyakrabban dolgozna kiscsoportban az egyéni válaszadás helyett. A válaszadók 94%-a nem vetné el a digitális módszerek alkalmazását, és 87% <hedgie-b>többféle módszert felválltva alkalmazna</hedgie-b> a kurzusok során. Összesen 14 különféle módszerre és eszközre érkezett javaslat.</p>$$
+    situation_text =
+      $$<p>
+      Az érintett kurzusok hallgatóinak 72%-a (N=223) töltötte ki a kérdőívet. A megkérdezett hallgatók 34%-a jelölte meg azt, hogy az online kvízekkel kapcsolatos <hedgie-b>elégedettsége folyamatosan csökkent</hedgie-b> a félév során. A nyitott kérdéses indoklásból kiderült, hogy a módszer játékos, interaktív jellege, továbbá a verseny élményszerűsége kezdetben motiválta a hallgatókat, hogy minél jobban igyekezzenek megérteni a tananyagot. Később viszont a <hedgie-b>kvízek monotonná és egyre unalmasabbá váltak,</hedgie-b> mivel sok oktató állandóan ezt használta.
+      </p>
+      <p>
+      A hallgatók 64%-a úgy vélte, hogy a <hedgie-b>kvíz inkább csak felszínes aktivitást generál</hedgie-b>, nem ösztönzi a véleményalkotást, kreativitást és problémamegoldást. 82% szerint <hedgie-b>nem képes megjeleníteni az anyag mélyebb összefüggéseit,</hedgie-b> amelyek a kurzus későbbi részeiben kulcsfontosságúvá váltak. 59% gyakrabban dolgozna kiscsoportban az egyéni válaszadás helyett. A válaszadók 94%-a nem vetné el a digitális módszerek alkalmazását, és <hedgie-b>87% többféle módszert felváltva alkalmazna</hedgie-b> a kurzusok során. Összesen 14 különféle módszerre és eszközre érkezett javaslat.
+      </p>$$
 WHERE id = 7;
 
 -- Update situation 8: Expert consultation results
@@ -238,6 +256,5 @@ UPDATE choices SET choice_text = $$A legjobb, ha elkezdem a tanítást, majd men
 -- UPDATE choices
 -- SET choice_text = $$A hallgatók sose aktívak, nem vesznek részt az új feladatokban, mindenki elutasítja az új feladatokat.$$
 -- WHERE id = 47;
-
 
 COMMIT;
