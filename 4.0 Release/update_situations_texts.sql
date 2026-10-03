@@ -208,7 +208,7 @@ WHERE id = 22;
 -- Insert a new situation coming from 22 and going to 23
 INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
 VALUES (77, $$Az óra után örülsz, mert hallod, hogy a hallgatók elégedettek, mivel megosztottad velük a kurzus újításait.$$,
-        NULL, 'folyoso_interakc io.png', FALSE, FALSE, FALSE, 1, 23);
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 1, 23);
 
 UPDATE choices
 SET next_situation_id = 77
@@ -256,5 +256,41 @@ UPDATE choices SET choice_text = $$A legjobb, ha elkezdem a tanítást, majd men
 -- UPDATE choices
 -- SET choice_text = $$A hallgatók sose aktívak, nem vesznek részt az új feladatokban, mindenki elutasítja az új feladatokat.$$
 -- WHERE id = 47;
+
+-- Update situation 24 and its choices
+UPDATE situations
+SET title = $$A problémamegoldáshoz még milyen segítséget kérsz?$$,
+    situation_text = $$Gondolj arra, mi lenne a legjobb megoldás az adott problémád kapcsán!$$
+WHERE id = 24;
+
+-- Insert a new situation coming from 24 and going back to 24
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (78, $$Ezek nem olyan nagy pedagógiai problémák, hogy hospitálni kéne hozzá. Válassz egy egyszerűbb megoldást!$$,
+        NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 1, 24);
+
+-- Insert a new situation coming from 24 and going back to 24
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (79, $$Érdemes lenne azért valamilyen segítséget kérni!$$,
+        NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 1, 24);
+
+UPDATE choices
+SET choice_text = $$Segítséget kérek egy tapasztalt kollégámtól.$$
+WHERE id = 48;
+
+UPDATE choices
+SET situation_id = 1
+WHERE id = 49;
+
+UPDATE choices
+SET choice_text = $$Megkérem egy kiváló oktató kollégám, akiről tudom, hogy fontos neki az aktív tanulás, hogy hospitálhassak egy óráján.$$
+WHERE id = 50;
+
+UPDATE choices
+SET next_situation_id = 78
+WHERE id IN (50, 51);
+
+UPDATE choices
+SET next_situation_id = 79
+WHERE id = 52;
 
 COMMIT;
