@@ -293,4 +293,48 @@ UPDATE choices
 SET next_situation_id = 79
 WHERE id = 52;
 
+-- Update situation texts after 25
+UPDATE situations
+SET title = $$A következő héten elmegyek órát látogatni a kollégához és az óramegfigyelésre készülve...$$
+WHERE id = 25;
+
+UPDATE situations
+SET title = $$Az előzetesen kialakított általános megfigyelési szempontsor...$$,
+    situation_text = $$
+      <ul>
+        <li>A <hedgie-b>célok, tanulási eredmények</hedgie-b> megjelenése, kapcsolata az órával </li>
+        <li>A <hedgie-b>hallgatók előzetes tudásá</hedgie-b>val való kapcsolat megteremtése </li>
+        <li>A hallgatók <hedgie-b>interakció</hedgie-b>ja az oktatóval és egymással </li>
+        <li>Az oktató <hedgie-b>facilitálás</hedgie-b>a, pl. hallgatók aktivitásának biztosítása, csoportmunka szervezése, kérdezés, az elemző gondolkodás lépéseinek támogatása </li>
+        <li>Az <hedgie-b>egész</hedgie-b> hallgatói <hedgie-b>csoport bevonása </hedgie-b></li>
+        <li>A <hedgie-b>hallgatók bátorítása</hedgie-b></li>
+        <li>A tanítás és <hedgie-b>tanulás teré</hedgie-b>nek kihasználása </li>
+        <li>A hallgatók számára adott formatív, <hedgie-b>megerősítő visszajelzések</hedgie-b> minősége </li>
+        <li>A <hedgie-b>tanultak összegzése</hedgie-b> és annak kiemelése, hogy mit tanultak a hallgatók </li>
+        <li>A hallgatók támogatása abban, hogy <hedgie-b>tudatosítsák a tanulási folyamatukat</hedgie-b></li>
+      </ul>
+      $$
+WHERE id = 26;
+
+UPDATE situations
+SET title = $$Az előzetesen kialakított megfigyelési szempontsor, ami az újításunk szempontjaira is figyel...$$,
+    situation_text = $$
+      <ul>
+        <li>A <hedgie-b>célok, tanulási eredmények</hedgie-b> megjelenése, kapcsolata az órával</li>
+        <li>A <hedgie-b>hallgatók innovatív gondolkodásá</hedgie-b>nak, kompetenciáinak fejlesztésének megjelenése</li>
+        <li>A hallgatók <hedgie-b>előzetes tudás</hedgie-b>ával való kapcsolat megteremtése</li>
+        <li>A hallgatók <hedgie-b>interakció</hedgie-b>ja az oktatóval és egymással</li>
+        <li>Az oktató <hedgie-b>facilitálás</hedgie-b>a, pl. hallgatói munka támogatása, csoportmunka szervezése, kérdezés, az elemző gondolkodás lépéseinek támogatása</li>
+        <li>Az online kvízek mellett <hedgie-b>új, a hallgatókat aktivizáló módszerek, feladatok használata</hedgie-b></li>
+        <li>Az <hedgie-b>egész</hedgie-b> hallgatói <hedgie-b>csoport bevonása</hedgie-b></li>
+        <li>A hallgatók <hedgie-b>bátorítás</hedgie-b>a</li>
+        <li>A tanítás és <hedgie-b>tanulás teré</hedgie-b>nek kihasználása</li>
+        <li>A hallgatók számára adott formatív, <hedgie-b>megerősítő visszajelzések</hedgie-b> minősége</li>
+        <li><hedgie-b>A visszajelzések az innovatív, aktivizáló módszerek használatának sikerességére</hedgie-b></li>
+        <li>A <hedgie-b>tanultak összegzése</hedgie-b> és annak kiemelése, hogy mit tanultak a hallgatók</li>
+        <li>A hallgatók támogatása abban, hogy <hedgie-b>tudatosítsák a tanulási folyamatukat</hedgie-b></li>
+      </ul>
+    $$
+WHERE id = 27;
+
 COMMIT;
