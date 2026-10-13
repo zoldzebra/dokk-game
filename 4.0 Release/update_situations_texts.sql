@@ -337,4 +337,56 @@ SET title = $$Az előzetesen kialakított megfigyelési szempontsor, ami az új�
     $$
 WHERE id = 27;
 
+UPDATE situations
+SET title = $$A következő héten elhívom a kollágát az órámra és ...$$
+WHERE id = 28;
+
+UPDATE situations
+SET title = $$Az előzetesen kialakított általános megfigyelési szempontsor...$$,
+    situation_text = $$
+      <ul>
+        <li>A <hedgie-b>célok, tanulási eredmények</hedgie-b> megjelenése, kapcsolata az órával </li>
+        <li>A <hedgie-b>hallgatók előzetes tudásá</hedgie-b>val való kapcsolat megteremtése </li>
+        <li>A hallgatók <hedgie-b>interakció</hedgie-b>ja az oktatóval és egymással </li>
+        <li>Az oktató <hedgie-b>facilitálás</hedgie-b>a, pl. hallgatók aktivitásának biztosítása, csoportmunka szervezése, kérdezés, az elemző gondolkodás lépéseinek támogatása </li>
+        <li>Az <hedgie-b>egész</hedgie-b> hallgatói <hedgie-b>csoport bevonása </hedgie-b></li>
+        <li>A <hedgie-b>hallgatók bátorítása</hedgie-b></li>
+        <li>A tanítás és <hedgie-b>tanulás teré</hedgie-b>nek kihasználása </li>
+        <li>A hallgatók számára adott formatív, <hedgie-b>megerősítő visszajelzések</hedgie-b> minősége </li>
+        <li>A <hedgie-b>tanultak összegzése</hedgie-b> és annak kiemelése, hogy mit tanultak a hallgatók </li>
+        <li>A hallgatók támogatása abban, hogy <hedgie-b>tudatosítsák a tanulási folyamatukat</hedgie-b></li>
+      </ul>
+    $$
+WHERE id = 29;
+
+UPDATE situations
+SET title = $$Az előzetesen kialakított megfigyelési szempontsor, ami az újításunk szempontjaira is figyel...$$,
+    situation_text = $$
+      <ul>
+        <li>A <hedgie-b>célok, tanulási eredmények</hedgie-b> megjelenése, kapcsolata az órával</li>
+        <li>A <hedgie-b>hallgatók innovatív gondolkodásá</hedgie-b>nak, kompetenciáinak fejlesztésének megjelenése</li>
+        <li>A hallgatók <hedgie-b>előzetes tudás</hedgie-b>ával való kapcsolat megteremtése</li>
+        <li>A hallgatók <hedgie-b>interakció</hedgie-b>ja az oktatóval és egymással</li>
+        <li>Az oktató <hedgie-b>facilitálás</hedgie-b>a, pl. hallgatói munka támogatása, csoportmunka szervezése, kérdezés, az elemző gondolkodás lépéseinek támogatása</li>
+        <li>Az online kvízek mellett <hedgie-b>új, a hallgatókat aktivizáló módszerek, feladatok használata</hedgie-b></li>
+        <li>Az <hedgie-b>egész</hedgie-b> hallgatói <hedgie-b>csoport bevonása</hedgie-b></li>
+        <li>A hallgatók <hedgie-b>bátorítás</hedgie-b>a</li>
+        <li>A tanítás és <hedgie-b>tanulás teré</hedgie-b>nek kihasználása</li>
+        <li>A hallgatók számára adott formatív, <hedgie-b>megerősítő visszajelzések</hedgie-b> minősége</li>
+        <li><hedgie-b>A visszajelzések az innovatív, aktivizáló módszerek használatának sikerességére</hedgie-b></li>
+        <li>A <hedgie-b>tanultak összegzése</hedgie-b> és annak kiemelése, hogy mit tanultak a hallgatók</li>
+        <li>A hallgatók támogatása abban, hogy <hedgie-b>tudatosítsák a tanulási folyamatukat</hedgie-b></li>
+      </ul>
+    $$
+WHERE id = 30;
+
+UPDATE situations
+SET title = $$
+              A honlapon keresgélve az innoválás tipikus problémái közt találok egy részt, ami pont azzal foglalkozik, hogy mi van, ha kicsúszunk az időből, felborul az órák ütemezése...
+            $$,
+    situation_text = $$
+              Ne feledd, hogy az <hedgie-b>újításod nem öncélú</hedgie-b>, valamit hatékonyabbá tesz az órád során. Gondold át, milyen tartalmak elsajátítását <hedgie-b>gyorsítja és/vagy mélyíti</hedgie-b>, amivel kiváltja a korábbi óraterv tartalmait vagy tevékenységeit. (NB: Például az ismétlésképp frontálisan megtartott kiselőadásod helyett tartasz beugró online kvízt és közös megbeszélést, nem azon felül!) A számodra látszólag <hedgie-b>kevesebb a hallgatók számára több!</hedgie-b> Nem a teljes tartalmat kell végigvenned velük, hanem a <hedgie-b>munkaformát, a gondolkodásmódot gyakoroltatni a témában</hedgie-b>, hogy önállóan is tudjanak dolgozni a további tartalmaiddal. Így <hedgie-b>amennyi belefér az órádba, annyi elég is!</hedgie-b> Győződj meg az órán, hogy tudják kezelni a tartalmaidat, a <hedgie-b>többit pedig bízd a hallgatóidra</hedgie-b>, és inkább gyakoroltass többet a kontakt alkalmakkor.
+              $$
+WHERE id = 31;
+
 COMMIT;
