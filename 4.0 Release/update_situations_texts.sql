@@ -389,4 +389,52 @@ SET title = $$
               $$
 WHERE id = 31;
 
+UPDATE situations
+SET title = $$
+              A honlapon keresgélve az innoválás tipikus problémái közt találok egy részt, ami pont azzal foglalkozik, hogy mi van, ha technikai problémák merülnek fel...
+            $$,
+    situation_text = $$
+              A <hedgie-b>digitális tér</hedgie-b> ugyanolyan <hedgie-b>előkészítést igényel</hedgie-b>, mint maga a tanterem. Amikor kontakt órán online kvízt alkalmazol, a <hedgie-b>digitális teret ötvözöd a fizikális térrel, ami többletmunka.</hedgie-b> Az órától függetlenül feladat az internet biztosításának feltételeiről gondoskodni, oktatóként jelezd ezt a tanszéken. Alakíts ki <hedgie-b>élő kapcsolatot az informatikusokkal</hedgie-b>, tudjanak róla, hogy mi az igény, és <hedgie-b>kérj háttér támogatást</hedgie-b> az órák idejére. Engedd meg, hogy szükség esetén egy eszközről akár többen is válaszolhassanak - válassz ennek megfelelő feladatot (például szófelhő). A QR-kódjaidat előre ellenőrizd le, alkalmazz megfelelő felbontást. Törekedj <hedgie-b>többször használható QR-kódok alkalmazására</hedgie-b>, ezeket néhány példányban kinyomtatva is beviheted a terembe. A QR-kód csak gyorsítja a belépést, de mindig van manuálisan bepötyöghető elérési út is, vetítsd ki ezt is. Ne tévesszen meg az ”online kvíz” elnevezés, ne feledd, hogy voltaképpen a módszertanodat újítottad meg! <hedgie-b>A digitális eszköz is csak egy eszköz</hedgie-b>, szükség esetén konvertálhatod a feladatot analóg eszközökre (például tábla, post-it).
+              $$
+WHERE id = 32;
+
+UPDATE situations
+SET title = $$
+              A honlapon keresgélve az innoválás tipikus problémái közt találok egy részt, ami pont azzal foglalkozik, hogy mi van, ha a hallgatók nem figyelnek, nem konstruktívan vesznek részt az órán...
+            $$,
+    situation_text = $$
+              Ne feledd, hogy amikor <hedgie-b>új módszert vezetsz be</hedgie-b>, az a hallgatók számára új munkaformát jelent. <hedgie-b>Tájékoztasd őket</hedgie-b> - a kurzus elején, az előző óra végén, vagy akár üzenetben (e-learning rendszer, e-mail) -, <hedgie-b>hogy mire készülsz, és tőlük mit vársz</hedgie-b> (például legyen náluk okoseszköz, előzetesen lépjenek fel a netre a megadott WiFi-kóddal, töltsék le az appot vagy regisztráljanak be előre, stb.). Az új munkaformát és <hedgie-b>módszert tanítsd is meg nekik</hedgie-b>, biztosíts gyakorlási lehetőséget az első alkalommal, kifejezetten a platform megismerésére, a <hedgie-b>feladattípusok begyakorlására</hedgie-b> technikai szempontból. (Ha ezt témafüggetlen, akár vicces kérdésekkel teszed, még lelkesebbek lesznek a hallgatóid!) Győződj meg róla, hogy <hedgie-b>készen állnak, mielőtt élesben beveted az újdonságot</hedgie-b>, és biztasd őket arra, hogy ehhez <hedgie-b>kérjenek segítséget</hedgie-b> akár tőled, akár egymástól. Ne felejtsd el megadni nekik a kereteket: mikor vegyék elő az eszközt, mire és meddig használják, mikor tegyék el! <hedgie-b>Ha megvan a hozzáférésük, magabiztosan kezelik a digitális eszközödet,</hedgie-b> és megbeszélted velük, mire megy ki a játék, garantáltan <hedgie-b>figyelni fognak, és nem csak követni lesznek képesek</hedgie-b> az órádat, hanem segíteni is fogják.
+              $$,
+    next_situation_id = 35
+WHERE id = 33;
+
+UPDATE situations
+SET title = $$
+              A honlapon keresgélve az innoválás tipikus problémái közt találok egy részt, ami pont azzal foglalkozik, hogy mi van, ha a hallgatók nem akarnak annyi energiát beletenni az órákba...
+            $$,
+    situation_text = $$
+              <hedgie-b>Győződj meg róla</hedgie-b>, hogy nem tervezted túl a kurzust, az óraszámuknak megfelelő <hedgie-b>reális idő és munkaráfordítást követelsz a hallgatóktól</hedgie-b> - hiszen ne feledd, hogy vannak más kurzusaik is, és van életük is! <hedgie-b>Ha változtatsz, ezt kommunikáld az új hallgatóid felé</hedgie-b>, és hangsúlyozd ki, hogy más ez a kurzus, mint amire a felsőbbévesektől receptet kaptak - érdemes <hedgie-b>átbeszélni velük előzetesen kalkulált energiaszükségletüket!</hedgie-b> Az új módszereidről, eszközeidről <hedgie-b>mindig kérj visszajelzést:</hedgie-b> ismerik-e, szeretik-e, mit használnak szívesen (például más órákon tapasztaltak alapján). <hedgie-b>Apránként vezesd be az újdonságokat</hedgie-b>, győződj meg róla, hogy értik a relevanciáját. Ne feledd, amit szívesen csinálnak, ami sikerélményt jelent, és <hedgie-b>aminek értelmét látják, abba az emberek több energiát tesznek.</hedgie-b> Ne várj mindenkitől egyforma erőbedobást és lelkesedést! <hedgie-b>Menet közben és a kurzus végén is kérj visszajelzést,</hedgie-b> hogy alakítani tudd az újdonságaidat. Táplálkozz a pozitív visszajelzésekből, és tekints konstruktívan a kritikákra!
+              $$
+WHERE id = 35;
+
+UPDATE situations
+SET title = $$
+              A honlapon keresgélve az innoválás tipikus problémái közt találok egy részt, ami pont azzal foglalkozik, hogy mi van, ha a hallgatók nem aktívak az órákon, többen el is utasítják az új feladatokat...
+            $$,
+    situation_text = $$
+              A <hedgie-b>hallgatók</hedgie-b> alapvetően aktívak, <hedgie-b>szeretik</hedgie-b> a feladatokat, a <hedgie-b>változatosságot és a társakkal való interakciót</hedgie-b>. Ha ellenállást tapasztalsz, első körben a biztonságérzetüket vizsgáld meg: valóban <hedgie-b>adottak-e a</hedgie-b> (technikai, tudásbeli, eszközös stb.) <hedgie-b>feltételek a feladat elvégzéséhez; értik-e pontosan a feladatot; felkészültek-e arra, hogy mit, miért és hogyan kell csinálniuk;</hedgie-b> sikerélményt nyújtanak-e a feladatok; változatosak-e a feladatok, hasznosak-e a feladatok; belefér-e a feladat a rendelkezésükre álló időkeretbe; <hedgie-b>támogatja-e a feladat a tananyag elsajátítását</hedgie-b>, a vizsgára való felkészülést? Ezeket a kérdéseket először tedd fel magadnak, akár hasonló feladatokkal dolgozó kollégáidnak. Ha <hedgie-b>átgondoltad</hedgie-b> a lehetséges válaszokat, <hedgie-b>kérdezd meg a hallgatóidat, hogy megismerd az ő szempontjaikat is!</hedgie-b> Győződj meg róla, hogy ők is tisztában vannak a feladat céljával, kivitelezhetőségével és a várható eredménnyel! Az <hedgie-b>ellenállást sokszor az ismeretlentől való félelem</hedgie-b>, irracionális <hedgie-b>szorongás váltja ki,</hedgie-b> ami akár egy tisztázó beszélgetéssel feloldható.
+              $$
+WHERE id = 36;
+
+UPDATE situations
+SET title = $$
+              A honlapon keresgélve az innoválás tipikus problémái közt találok egy részt, ami pont azzal foglalkozik, hogy mi van, ha oktatóként elbizonytalanodom abban, hogy jó úton járok-e...
+            $$,
+    situation_text = $$
+              A módszerek széles tárháza áll rendelkezésedre, <hedgie-b>ismerj meg minél többet,</hedgie-b> és bátran válogass közöttük. Minél <hedgie-b>több módszert ismersz, annál rugalmasabban tudsz változtatni</hedgie-b> akár tanítás közben is. Minden hallgató, minden csoport, minden időszak más, egyes módszerek az egyiknél válnak be, mások a másiknál - kísérletezz és váltogasd őket bátran! <hedgie-b>Egyszerre csak egy új módszert vezess be,</hedgie-b> és lehetőleg olyan órán, amit tartalmilag különösen szeretsz, a szíveden viseled, lubickolsz benne - így szívesen és <hedgie-b>magabiztosan fogod variálni, és a kreativitásod is beindul.</hedgie-b> Ha már egy ilyen órán begyakoroltad, könnyebben viszed tovább a többire is. <hedgie-b>Vonj be</hedgie-b> nyugodtan <hedgie-b>tapasztaltabb kollégát,</hedgie-b> vagy “beépített embert” a hallgatóid közül. Az új módszereket <hedgie-b>nem muszáj rögtön élesben kipróbálni,</hedgie-b> gyakorolhatsz magadban, kollégákkal, ismerősi körben, önkéntes hallgatókkal, vagy akár az órádon belül is, nyíltan kísérleti jelleggel. Ha elárulod a hallgatóidnak, hogy először próbálod ki, <hedgie-b>kérd a segítségüket és a visszajelzéseiket,</hedgie-b> így ez egy közös kalanddá válik, ami csak jól végződhet! <hedgie-b>Merj kísérletezni, légy felkészült, kérj támogatást,</hedgie-b> és ne légy magadhoz túl szigorú! Gyakorlat teszi a mestert!
+              $$
+WHERE id = 37;
+
+
+
 COMMIT;
