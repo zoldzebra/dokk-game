@@ -106,8 +106,8 @@ INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_
 VALUES (72, $$Miután döntöttünk a fő fejlesztési irányról, két hét múlva találkozom Dr. Lehet Péter, oktatási dékánhelyettessel.<br></br>
 <i>- Hogyan haladtok?</i> - kérdi tőlem.$$, NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 2, NULL);
 
-INSERT INTO choices (situation_id, choice_text, next_situation_id)
-VALUES (72,
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (127, 72,
   $$Sajnos, elakadtunk, mindenki folytatni akarja, amit eddig is csinált oktatóként, de így egyáltalán nem látjuk, hogy hogyan fog tudni javulni a hallgatói elégedettség és eredményesség. Ráadásul mindjárt kezdődik a következő félév.$$,
   14);
 
@@ -225,37 +225,6 @@ SET choice_text = $$Készítek egy rövid igényfelmérést a hallgatóim köré
 WHERE id = 39;
 
 UPDATE choices SET choice_text = $$A legjobb, ha elkezdem a tanítást, majd menet közben megértik a hallgatók, hogy miről szól a megújított módszertan.$$ WHERE id = 40;
-
--- -- Update situation 23 texts and choices (WIP)
--- UPDATE situations
--- SET title = $$Elindultak a pilot kurzusok, már egy hónap is eltelt a félévből, így elérkeztetek a fejlesztői csapat első találkozásáig...$$,
---     situation_text = $$<p>Mindenki <hedgie-b>számos nehézségről számol be</hedgie-b> az új módszerek kapcsán. Számodra mi <hedgie-b>jelentette</hedgie-b> eddig a <hedgie-b>legnagyobb problémát</hedgie-b>?</p>$$
--- WHERE id = 23;
-
--- UPDATE choices
--- SET choice_text = $$Mindig van valamilyen technikai probléma, nem minden hallgatónál működik a wifi, a QR kód beolvasással is adódnak gondjaik.$$
--- WHERE id = 42;
-
--- UPDATE choices
--- SET next_situation_id = 70
--- WHERE id = 43;
-
--- UPDATE choices
--- SET choice_text = $$Elbizonytalanodtam az új módszerrel kapcsolatban, még nem érzem magam elég felkészültnek a használatához.$$
--- WHERE id = 44;
-
--- -- remove this choice (situation 1 does not show choices)
--- UPDATE choices
--- SET situation_id = 1
--- WHERE id = 45;
-
--- UPDATE choices
--- SET choice_text = $$Bár a hallgatók szívesen fogadták az újításokat, mostanra már alig tesznek az órákba energiát.$$
--- WHERE id = 46;
-
--- UPDATE choices
--- SET choice_text = $$A hallgatók sose aktívak, nem vesznek részt az új feladatokban, mindenki elutasítja az új feladatokat.$$
--- WHERE id = 47;
 
 -- Update situation 24 and its choices
 UPDATE situations
@@ -386,7 +355,8 @@ SET title = $$
             $$,
     situation_text = $$
               Ne feledd, hogy az <hedgie-b>újításod nem öncélú</hedgie-b>, valamit hatékonyabbá tesz az órád során. Gondold át, milyen tartalmak elsajátítását <hedgie-b>gyorsítja és/vagy mélyíti</hedgie-b>, amivel kiváltja a korábbi óraterv tartalmait vagy tevékenységeit. (NB: Például az ismétlésképp frontálisan megtartott kiselőadásod helyett tartasz beugró online kvízt és közös megbeszélést, nem azon felül!) A számodra látszólag <hedgie-b>kevesebb a hallgatók számára több!</hedgie-b> Nem a teljes tartalmat kell végigvenned velük, hanem a <hedgie-b>munkaformát, a gondolkodásmódot gyakoroltatni a témában</hedgie-b>, hogy önállóan is tudjanak dolgozni a további tartalmaiddal. Így <hedgie-b>amennyi belefér az órádba, annyi elég is!</hedgie-b> Győződj meg az órán, hogy tudják kezelni a tartalmaidat, a <hedgie-b>többit pedig bízd a hallgatóidra</hedgie-b>, és inkább gyakoroltass többet a kontakt alkalmakkor.
-              $$
+              $$,
+    next_situation_id = 24
 WHERE id = 31;
 
 UPDATE situations
@@ -395,7 +365,8 @@ SET title = $$
             $$,
     situation_text = $$
               A <hedgie-b>digitális tér</hedgie-b> ugyanolyan <hedgie-b>előkészítést igényel</hedgie-b>, mint maga a tanterem. Amikor kontakt órán online kvízt alkalmazol, a <hedgie-b>digitális teret ötvözöd a fizikális térrel, ami többletmunka.</hedgie-b> Az órától függetlenül feladat az internet biztosításának feltételeiről gondoskodni, oktatóként jelezd ezt a tanszéken. Alakíts ki <hedgie-b>élő kapcsolatot az informatikusokkal</hedgie-b>, tudjanak róla, hogy mi az igény, és <hedgie-b>kérj háttér támogatást</hedgie-b> az órák idejére. Engedd meg, hogy szükség esetén egy eszközről akár többen is válaszolhassanak - válassz ennek megfelelő feladatot (például szófelhő). A QR-kódjaidat előre ellenőrizd le, alkalmazz megfelelő felbontást. Törekedj <hedgie-b>többször használható QR-kódok alkalmazására</hedgie-b>, ezeket néhány példányban kinyomtatva is beviheted a terembe. A QR-kód csak gyorsítja a belépést, de mindig van manuálisan bepötyöghető elérési út is, vetítsd ki ezt is. Ne tévesszen meg az ”online kvíz” elnevezés, ne feledd, hogy voltaképpen a módszertanodat újítottad meg! <hedgie-b>A digitális eszköz is csak egy eszköz</hedgie-b>, szükség esetén konvertálhatod a feladatot analóg eszközökre (például tábla, post-it).
-              $$
+              $$,
+    next_situation_id = 24
 WHERE id = 32;
 
 UPDATE situations
@@ -405,7 +376,7 @@ SET title = $$
     situation_text = $$
               Ne feledd, hogy amikor <hedgie-b>új módszert vezetsz be</hedgie-b>, az a hallgatók számára új munkaformát jelent. <hedgie-b>Tájékoztasd őket</hedgie-b> - a kurzus elején, az előző óra végén, vagy akár üzenetben (e-learning rendszer, e-mail) -, <hedgie-b>hogy mire készülsz, és tőlük mit vársz</hedgie-b> (például legyen náluk okoseszköz, előzetesen lépjenek fel a netre a megadott WiFi-kóddal, töltsék le az appot vagy regisztráljanak be előre, stb.). Az új munkaformát és <hedgie-b>módszert tanítsd is meg nekik</hedgie-b>, biztosíts gyakorlási lehetőséget az első alkalommal, kifejezetten a platform megismerésére, a <hedgie-b>feladattípusok begyakorlására</hedgie-b> technikai szempontból. (Ha ezt témafüggetlen, akár vicces kérdésekkel teszed, még lelkesebbek lesznek a hallgatóid!) Győződj meg róla, hogy <hedgie-b>készen állnak, mielőtt élesben beveted az újdonságot</hedgie-b>, és biztasd őket arra, hogy ehhez <hedgie-b>kérjenek segítséget</hedgie-b> akár tőled, akár egymástól. Ne felejtsd el megadni nekik a kereteket: mikor vegyék elő az eszközt, mire és meddig használják, mikor tegyék el! <hedgie-b>Ha megvan a hozzáférésük, magabiztosan kezelik a digitális eszközödet,</hedgie-b> és megbeszélted velük, mire megy ki a játék, garantáltan <hedgie-b>figyelni fognak, és nem csak követni lesznek képesek</hedgie-b> az órádat, hanem segíteni is fogják.
               $$,
-    next_situation_id = 35
+    next_situation_id = 70
 WHERE id = 33;
 
 UPDATE situations
@@ -414,7 +385,8 @@ SET title = $$
             $$,
     situation_text = $$
               <hedgie-b>Győződj meg róla</hedgie-b>, hogy nem tervezted túl a kurzust, az óraszámuknak megfelelő <hedgie-b>reális idő és munkaráfordítást követelsz a hallgatóktól</hedgie-b> - hiszen ne feledd, hogy vannak más kurzusaik is, és van életük is! <hedgie-b>Ha változtatsz, ezt kommunikáld az új hallgatóid felé</hedgie-b>, és hangsúlyozd ki, hogy más ez a kurzus, mint amire a felsőbbévesektől receptet kaptak - érdemes <hedgie-b>átbeszélni velük előzetesen kalkulált energiaszükségletüket!</hedgie-b> Az új módszereidről, eszközeidről <hedgie-b>mindig kérj visszajelzést:</hedgie-b> ismerik-e, szeretik-e, mit használnak szívesen (például más órákon tapasztaltak alapján). <hedgie-b>Apránként vezesd be az újdonságokat</hedgie-b>, győződj meg róla, hogy értik a relevanciáját. Ne feledd, amit szívesen csinálnak, ami sikerélményt jelent, és <hedgie-b>aminek értelmét látják, abba az emberek több energiát tesznek.</hedgie-b> Ne várj mindenkitől egyforma erőbedobást és lelkesedést! <hedgie-b>Menet közben és a kurzus végén is kérj visszajelzést,</hedgie-b> hogy alakítani tudd az újdonságaidat. Táplálkozz a pozitív visszajelzésekből, és tekints konstruktívan a kritikákra!
-              $$
+              $$,
+    next_situation_id = 70
 WHERE id = 35;
 
 UPDATE situations
@@ -423,7 +395,8 @@ SET title = $$
             $$,
     situation_text = $$
               A <hedgie-b>hallgatók</hedgie-b> alapvetően aktívak, <hedgie-b>szeretik</hedgie-b> a feladatokat, a <hedgie-b>változatosságot és a társakkal való interakciót</hedgie-b>. Ha ellenállást tapasztalsz, első körben a biztonságérzetüket vizsgáld meg: valóban <hedgie-b>adottak-e a</hedgie-b> (technikai, tudásbeli, eszközös stb.) <hedgie-b>feltételek a feladat elvégzéséhez; értik-e pontosan a feladatot; felkészültek-e arra, hogy mit, miért és hogyan kell csinálniuk;</hedgie-b> sikerélményt nyújtanak-e a feladatok; változatosak-e a feladatok, hasznosak-e a feladatok; belefér-e a feladat a rendelkezésükre álló időkeretbe; <hedgie-b>támogatja-e a feladat a tananyag elsajátítását</hedgie-b>, a vizsgára való felkészülést? Ezeket a kérdéseket először tedd fel magadnak, akár hasonló feladatokkal dolgozó kollégáidnak. Ha <hedgie-b>átgondoltad</hedgie-b> a lehetséges válaszokat, <hedgie-b>kérdezd meg a hallgatóidat, hogy megismerd az ő szempontjaikat is!</hedgie-b> Győződj meg róla, hogy ők is tisztában vannak a feladat céljával, kivitelezhetőségével és a várható eredménnyel! Az <hedgie-b>ellenállást sokszor az ismeretlentől való félelem</hedgie-b>, irracionális <hedgie-b>szorongás váltja ki,</hedgie-b> ami akár egy tisztázó beszélgetéssel feloldható.
-              $$
+              $$,
+    next_situation_id = 70
 WHERE id = 36;
 
 UPDATE situations
@@ -432,8 +405,120 @@ SET title = $$
             $$,
     situation_text = $$
               A módszerek széles tárháza áll rendelkezésedre, <hedgie-b>ismerj meg minél többet,</hedgie-b> és bátran válogass közöttük. Minél <hedgie-b>több módszert ismersz, annál rugalmasabban tudsz változtatni</hedgie-b> akár tanítás közben is. Minden hallgató, minden csoport, minden időszak más, egyes módszerek az egyiknél válnak be, mások a másiknál - kísérletezz és váltogasd őket bátran! <hedgie-b>Egyszerre csak egy új módszert vezess be,</hedgie-b> és lehetőleg olyan órán, amit tartalmilag különösen szeretsz, a szíveden viseled, lubickolsz benne - így szívesen és <hedgie-b>magabiztosan fogod variálni, és a kreativitásod is beindul.</hedgie-b> Ha már egy ilyen órán begyakoroltad, könnyebben viszed tovább a többire is. <hedgie-b>Vonj be</hedgie-b> nyugodtan <hedgie-b>tapasztaltabb kollégát,</hedgie-b> vagy “beépített embert” a hallgatóid közül. Az új módszereket <hedgie-b>nem muszáj rögtön élesben kipróbálni,</hedgie-b> gyakorolhatsz magadban, kollégákkal, ismerősi körben, önkéntes hallgatókkal, vagy akár az órádon belül is, nyíltan kísérleti jelleggel. Ha elárulod a hallgatóidnak, hogy először próbálod ki, <hedgie-b>kérd a segítségüket és a visszajelzéseiket,</hedgie-b> így ez egy közös kalanddá válik, ami csak jól végződhet! <hedgie-b>Merj kísérletezni, légy felkészült, kérj támogatást,</hedgie-b> és ne légy magadhoz túl szigorú! Gyakorlat teszi a mestert!
-              $$
+              $$,
+    next_situation_id = 69
 WHERE id = 37;
+
+-- Update situation 23 texts and following choice logic
+UPDATE situations
+SET title = $$Elindultak a pilot kurzusok, már egy hónap is eltelt a félévből, így elérkeztetek a fejlesztői csapat első találkozásáig...$$,
+    situation_text = $$<p>Mindenki <hedgie-b>számos nehézségről számol be</hedgie-b> az új módszerek kapcsán. Számodra mi <hedgie-b>jelentette</hedgie-b> eddig a <hedgie-b>legnagyobb problémát</hedgie-b>?</p>$$
+WHERE id = 23;
+
+-- Insert cloned new situations (80-85) and their Igen/Nem choices coming from situation 23 choices
+-- situation 80
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (80, $$A csapatból az egyik kollégád ajánl egy egyetemi honlapot, ahol hasznos szakirodalmat és oktatási tanácsokat olvashatsz. Megnézed?$$,
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 3, null);
+
+UPDATE choices
+SET next_situation_id = 80
+WHERE id = 41;
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (128, 80, 'Igen', 31);
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (129, 80, 'Nem', 24);
+
+-- situation 81
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (81, $$A csapatból az egyik kollégád ajánl egy egyetemi honlapot, ahol hasznos szakirodalmat és oktatási tanácsokat olvashatsz. Megnézed?$$,
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 3, null);
+
+UPDATE choices
+SET choice_text = $$Mindig van valamilyen technikai probléma, nem minden hallgatónál működik a wifi, a QR kód beolvasással is adódnak gondjaik.$$,
+    next_situation_id = 81
+WHERE id = 42;
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (130, 81, 'Igen', 32);
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (131, 81, 'Nem', 24);
+
+-- situation 82
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (82, $$A csapatból az egyik kollégád ajánl egy egyetemi honlapot, ahol hasznos szakirodalmat és oktatási tanácsokat olvashatsz. Megnézed?$$,
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 3, null);
+
+UPDATE choices
+SET next_situation_id = 82
+WHERE id = 43;
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (132, 82, 'Igen', 33);
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (133, 82, 'Nem', 70);
+
+-- situation 83
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (83, $$A csapatból az egyik kollégád ajánl egy egyetemi honlapot, ahol hasznos szakirodalmat és oktatási tanácsokat olvashatsz. Megnézed?$$,
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 3, null);
+
+UPDATE choices
+SET choice_text = $$Elbizonytalanodtam az új módszerrel kapcsolatban, még nem érzem magam elég felkészültnek a használatához.$$,
+    next_situation_id = 83
+WHERE id = 44;
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (134, 83, 'Igen', 37);
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (135, 83, 'Nem', 69);
+
+-- remove this choice (situation 1 does not show choices)
+UPDATE choices
+SET situation_id = 1
+WHERE id = 45;
+
+-- situation 84
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (84, $$A csapatból az egyik kollégád ajánl egy egyetemi honlapot, ahol hasznos szakirodalmat és oktatási tanácsokat olvashatsz. Megnézed?$$,
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 3, null);
+
+UPDATE choices
+SET choice_text = $$Bár a hallgatók szívesen fogadták az újításokat, mostanra már alig tesznek az órákba energiát.$$,
+    next_situation_id = 84
+WHERE id = 46;
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (136, 84, 'Igen', 35);
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (137, 84, 'Nem', 70);
+
+-- situation 85-86
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (85, $$A csapatból az egyik kollégád ajánl egy egyetemi honlapot, ahol hasznos szakirodalmat és oktatási tanácsokat olvashatsz. Megnézed?$$,
+        NULL, 'folyoso_interakcio.png', FALSE, FALSE, FALSE, 3, null);
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (86, $$Biztos, hogy mindig minden hallgató inaktív? Talán érdemes árnyaltabban értelmezni a problémákat.$$,
+        NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 1, 85);
+
+UPDATE choices
+SET choice_text = $$A hallgatók sose aktívak, nem vesznek részt az új feladatokban, mindenki elutasítja az új feladatokat.$$,
+    next_situation_id = 86
+WHERE id = 47;
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (138, 85, 'Igen', 36);
+
+INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
+VALUES (139, 85, 'Nem', 70);
+
 
 
 
