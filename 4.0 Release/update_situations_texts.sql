@@ -246,6 +246,7 @@ UPDATE choices
 SET choice_text = $$Segítséget kérek egy tapasztalt kollégámtól.$$
 WHERE id = 48;
 
+-- remove this choice (situation 1 does not show choices)
 UPDATE choices
 SET situation_id = 1
 WHERE id = 49;
@@ -519,6 +520,37 @@ VALUES (138, 85, 'Igen', 36);
 INSERT INTO choices (id, situation_id, choice_text, next_situation_id)
 VALUES (139, 85, 'Nem', 70);
 
+-- Update situation 69 and followings
+UPDATE situations
+SET title = $$Hogyan próbálod megoldani a fókuszba helyezett kihívást?$$
+WHERE id = 69;
+
+-- insert an info situation after some choices before returning to 69
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (87, $$Talán van jobb választás, hiszen itt érdemes jobban elmélyülni a tanulásban, másoktól is tanulni!$$,
+        NULL, 'hedgie_terulo.png', FALSE, FALSE, FALSE, 1, 69);
+
+UPDATE choices
+SET choice_text = $$Segítséget kérek egy tapasztalt kollégámtól.$$,
+    next_situation_id = 87
+WHERE id = 116;
+
+-- remove this choice (situation 1 does not show choices)
+UPDATE choices
+SET situation_id = 1
+WHERE id = 117;
+
+UPDATE choices
+SET choice_text = $$Megkérem egy kiváló oktató kollégám, akiről tudom, hogy fontos neki az aktív tanulás, hogy hospitálhassak egy óráján.$$
+WHERE id = 118;
+
+UPDATE choices
+SET next_situation_id = 87
+WHERE id = 119;
+
+UPDATE choices
+SET next_situation_id = 87
+WHERE id = 120;
 
 
 
