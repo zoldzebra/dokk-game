@@ -657,10 +657,31 @@ UPDATE choices
 SET next_situation_id = 90
 WHERE id = 79;
 
+-- Update situation 48 and follow ups
 UPDATE situations
-SET title = $$Hivatalos emailt kapsz arról, hogy egy külföldi delegáció érkezik a Studentaria Karra, és ezért szükség van arra a teremre, amiben te tartod a pilot kurzusod. Mit teszel a kurzusoddal?$$
+SET title = $$Hivatalos emailt kapsz arról, hogy egy külföldi delegáció érkezik a Studentaria Karra, és ezért szükség van arra a teremre, amiben te tartod a pilot kurzusod. Mit teszel a kurzusoddal?$$,
+    situation_text = NULL
 WHERE id = 48;
 
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (91, $$Lehet Péter, dékánhelyettestől kapsz egy emailt, amiben megköszöni, hogy ilyen rugalmasan oldottad meg a helyzetet.$$,
+        NULL, 'nemzetkozi_delegacio.png', FALSE, FALSE, FALSE, 1, 49);
 
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (92, $$Kár, hogy nem kezelted rugalmasabban a helyzetet. A delegáció részt vett más órán és nagyon jó visszajelzéseket adott.$$,
+        NULL, 'nemzetkozi_delegacio.png', FALSE, FALSE, FALSE, 1, 49);
+
+UPDATE choices
+SET next_situation_id = 91
+WHERE id IN (80, 81, 82);
+
+UPDATE choices
+SET next_situation_id = 92
+WHERE id = 83;
+
+UPDATE situations
+SET title = $$A fejlesztői csapat múltkori ülésen beszéltünk róla, hogy jó lenne visszajelzést kérni a hallgatóktól az oktatási újításainkról...$$,
+    situation_text = $$Ez egy <hedgie-b>nehéz döntés</hedgie-b> számomra, most éppen rengeteg minden egyéb kutatási és oktatási feladatra kell figyelnem, viszont most már <hedgie-b>nem is halaszthatom tovább a döntést,</hedgie-b> tehát...$$
+WHERE id = 49;
 
 COMMIT;
