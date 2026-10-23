@@ -581,4 +581,86 @@ UPDATE choices
 SET next_situation_id = 88
 WHERE id = 125;
 
+-- Updates from situation 39
+UPDATE situations
+SET title = $$Rengeteg energiát tettél a kurzusod megújításába, kezelted a felmerült problémákat. Így most végre jól működik az órád, a hallgatók és te is elégedett vagytok!$$
+WHERE id = 39;
+
+UPDATE situations
+SET title = $$Úgy látszik, a rengeteg pozitív tapasztalat nem tart túl sokáig, fültanúja leszel annak, ahogyan a hallgatók egymást közt méltatlankodnak. Mitévő leszel?$$
+WHERE id = 40;
+
+UPDATE choices
+SET next_situation_id = 40
+WHERE id = 64;
+
+UPDATE situations
+SET title = $$A beavatkozásod nyomán elmúlt a hallgatók bizonytalansága, most sikeresen oldották meg a feladatokat. Te mondasz a hallgatóknak erről?$$
+WHERE id = 41;
+
+UPDATE situations
+SET title = $$Elérkezett a fejlesztői csapat újabb megbeszélése, először átbeszéljük, ki hol tart az innovatív kurzus megvalósításában. Te hogyan számolsz be a tapasztalaidról?$$
+WHERE id = 43;
+
+UPDATE situations
+SET title = $$A megbeszélésre a csapat egyik tagja, Dóra késve érkezik...$$,
+    situation_text = $$<hedgie-b>– Bocs a késésért, valakinek dolgoznia is kell...</hedgie-b> Jól ismertek, alaposan és céltudatosan végzem a munkámat, de őszintén szólva, ez az <hedgie-b>“innovációsdi” kezdetektől fogva nem tetszik.</hedgie-b> Miért kellene nekünk a fejünk tetejére állva szórakoztatni az ilyen-olyan generációs hallgatókat, és az ő elégedettségükre hajtani?! Ne bohóckodjunk már! <hedgie-b>Nem élvezni kell az én óráimat, hanem odafigyelni,</hedgie-b> szorgalmasan jegyzetelni, utánaolvasni és gyakorolni! <hedgie-b>Mi</hedgie-b> is így végeztük el az egyetemet annak idején, és <hedgie-b>örültünk, hogy a legjobbaktól tanulhatunk.</hedgie-b>$$
+WHERE id = 44;
+
+UPDATE situations
+SET title = $$Dóra kifakadásától nem tud a csapat megnyugodni, a megbeszélés szünetében mindenki lázasan keresi az okokat...$$,
+    situation_text = $$
+    <p>– Talán nem ért egyet a <hedgie-b>projekt céljával?</hedgie-b></p>
+    <p>– Igazából kevésbé számít, hogy egyetért-e, az OMHV alapján a felsővezetés ezt várja tőlünk, és a mi dolgunk az, hogy <hedgie-b>kari szinten megoldást keressünk.</hedgie-b></p><br>
+    <p>– Talán nem veszi komolyan?</p>
+    <p>– Mivel csak <hedgie-b>most kezdett betanítani ebbe a kurzusba,</hedgie-b> talán nem tudja, hogy az <hedgie-b>elmúlt években egyre rosszabb a tárgy megítélése,</hedgie-b> és a hallgatók teljesítménye, miközben alapvető fontosságú a kurrikulumban. A társintézeteknek is fontos, hogy jobban tudjanak építeni a hallgatóink tudására, és <hedgie-b>ehhez próbálunk hozzájárulni a magunk eszközeivel.</hedgie-b></p><br>
+    <p>– Talán csak <hedgie-b>bizonytalan?</hedgie-b></p>
+    <p>– Erre van sok jógyakorlat a felsőoktatásban, ezeket próbáljuk megismerni és a <hedgie-b>saját lehetőségeinkhez mérten beépíteni.</hedgie-b> Apránként, <hedgie-b>kísérletezve, egymást is segítve.</hedgie-b> Nem csak a hallgatókért, hanem hogy <hedgie-b>nekünk is jelentsen sikerélményt a tanítás.</hedgie-b> És persze a megmaradásunk érdekében is.</p>$$
+WHERE id = 45;
+
+-- Update situation 46 and follow ups
+UPDATE situations
+SET title = $$Te mit gondolsz, érdemes tovább foglalkozni azzal, hogy Dóra nem csinált szinte semmit a közös fejlesztő munkában?$$
+WHERE id = 46;
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (89, $$Szerencsére volt valaki más a fejlesztői csapatban, aki segített Dórának. Azóta a hangulat is jobb a csapatban.$$,
+        NULL, 'teamules.png', FALSE, FALSE, FALSE, 1, 48);
+
+UPDATE choices
+SET next_situation_id = 89
+WHERE id = 75;
+
+UPDATE situations
+SET title = $$Mit lépsz?$$
+WHERE id = 47;
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (90, $$Dóra talán továbbra is kevésbé veszi ki a részét a munkából, de azért most már ő is figyel arra, hogy a megbeszélt módszereket beépítse az órájába. Szerencsére a csapaton belüli feszültség is csökkent emiatt.$$,
+        NULL, 'teamules.png', FALSE, FALSE, FALSE, 1, 48);
+
+UPDATE choices
+SET choice_text = $$Javaslom neki, hogy lépjen ki a csapatból.$$,
+    next_situation_id = 90
+WHERE id = 76;
+
+UPDATE choices
+SET choice_text = $$Megkérem a fejlesztői csapat vezetőjét, hogy intézkedjen.$$,
+    next_situation_id = 90
+WHERE id = 77;
+
+UPDATE choices
+SET next_situation_id = 90
+WHERE id = 78;
+
+UPDATE choices
+SET next_situation_id = 90
+WHERE id = 79;
+
+UPDATE situations
+SET title = $$Hivatalos emailt kapsz arról, hogy egy külföldi delegáció érkezik a Studentaria Karra, és ezért szükség van arra a teremre, amiben te tartod a pilot kurzusod. Mit teszel a kurzusoddal?$$
+WHERE id = 48;
+
+
+
 COMMIT;
