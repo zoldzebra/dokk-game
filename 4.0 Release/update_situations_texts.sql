@@ -522,7 +522,8 @@ VALUES (139, 85, 'Nem', 70);
 
 -- Update situation 69 and followings
 UPDATE situations
-SET title = $$Hogyan próbálod megoldani a fókuszba helyezett kihívást?$$
+SET title = $$Hogyan próbálod megoldani a fókuszba helyezett kihívást?$$,
+    situation_text = NULL
 WHERE id = 69;
 
 -- insert an info situation after some choices before returning to 69
@@ -554,7 +555,8 @@ WHERE id = 120;
 
 -- Update situation 70 and followings
 UPDATE situations
-SET title = $$Hogyan próbálod megoldani a fókuszba helyezett kihívást?$$
+SET title = $$Hogyan próbálod megoldani a fókuszba helyezett kihívást?$$,
+    situation_text = NULL
 WHERE id = 70;
 
 -- insert an info situation after some choices before returning to 70
@@ -705,5 +707,113 @@ VALUES (93, $$Szerencsére a csapat többi tagja adott visszajelzést a hallgat�
 UPDATE choices
 SET next_situation_id = 49
 WHERE id = 87;
+
+-- Updates from situation 52
+UPDATE situations
+SET title = $$Elkezded tervezni az utolsó órai visszajelzést. Melyiket választod?$$
+WHERE id = 52;
+
+UPDATE situations
+SET title = $$A hallgatóimat ismerve az utolsó órai közös visszajelzést a következő módon tervezheted. Melyiket választod végül?$$,
+    situation_text = NULL
+WHERE id = 53;
+
+UPDATE situations
+SET title = $$Megint összeült a fejlesztői csapat, hogy értékeljük a pilot kurzusok eddigi tapasztalatait. Többen jelezték, hogy a hallgatók nagyon örültek a folyamatos visszajelzésnek. Most rajtunk a sor, hogy megosszuk oktatóként hogyan látjuk a fejlődésünket. Te mennyire vagy elégedett?$$
+WHERE id = 54;
+
+UPDATE situations
+SET title = $$A csapat egyik tagja azt javasolja...$$,
+    situation_text = $$Ha úgy érzed, az <hedgie-b>önreflexió</hedgie-b>ban még fejlődnöd szükséges, akkor érdemes amellett, hogy <hedgie-b>te is elemzed a tanításod, újításaid,</hedgie-b> a kollégáktól és hallgatóktól is rendszeresen visszajelzést kérned. Talán próbáld meg magad számára is még pontosabban tisztázni, hogy <hedgie-b>mit akarsz elérni a tanítás során,</hedgie-b> s ehhez kötődően elemezd a tapasztalataid.$$
+WHERE id = 56;
+
+UPDATE situations
+SET title = $$A csapat egyik tagja azt javasolja...$$,
+    situation_text = $$A <hedgie-b>kezdeményezőkészség</hedgie-b>ben szerintem igen nehéz erősödni, én általában <hedgie-b>elég bizonytalan vagyok,</hedgie-b> hogy jó ötletet, irányt vetek fel. De arra szoktam gondolni, hogy általában annyi probléma és kihívás merül fel az oktatásban, hogy szinte <hedgie-b>bármilyen ötlet</hedgie-b> csak jobbá teheti az oktatást, csak az a lényeg, hogy a megvalósítás előtt azért sok visszajelzést gyűjtsünk, és próbáljunk a <hedgie-b>várt hatásoknak kicsit jobban utána olvasni.</hedgie-b>$$
+WHERE id = 57;
+
+UPDATE situations
+SET title = $$A csapat egyik tagja azt javasolja...$$,
+    situation_text = $$A karrierem elején <hedgie-b>sokat szenvedtem attól,</hedgie-b> hogy a csoportos munkát nagyon nem találtam hatékonynak. De aztán elkezdtem azt figyelni, hogy <hedgie-b>mi az, amit a kollégám jobban tud, mint én, mi az, amit tanulhatok tőle.</hedgie-b> Ez segített abban, hogy ne az idegesítő tulajdonságaira figyeljek, és hogy tudjunk koncentrálni a közös feladatra, <hedgie-b>együttműködés</hedgie-b>re.$$
+WHERE id = 58;
+
+UPDATE situations
+SET title = $$A csapat egyik tagja azt javasolja...$$,
+    situation_text = $$Ha úgy érzed, a <hedgie-b>pedagógiai felkészültséged</hedgie-b>ben még fejlődnöd kéne, akkor érdemes lenne <hedgie-b>megnézned egy-két oktatói útmutatót</hedgie-b> akár a kurzus tervezése, módszerek használata vagy értékelés kapcsán! Én amellett, hogy a mi egyetemünk oktatásmódszertani központjának honlapját szoktam nézni, az általam <hedgie-b>meghatározónak tartott egyetemek oktatói anyagait is át szoktam futni.</hedgie-b>$$
+WHERE id = 59;
+
+UPDATE situations
+SET title = $$A csapat egyik tagja azt javasolja...$$,
+    situation_text = $$Mi a tanszéken rászoktunk arra, hogy gyűjtjük a legkülönfélébb <hedgie-b>kreatív tanítási ötletet,</hedgie-b> amit aztán havonta átnézünk, kiegészítünk, és néhányat <hedgie-b>közösen is felkarolunk, és elkezdünk megvalósítani.</hedgie-b> Engem felszabadított, hogy nem kellett időre ötletelnem, hanem lehetőségem volt, bármikor felírnom valamit, amikor eszembe jutott.$$
+WHERE id = 60;
+
+UPDATE situations
+SET title = $$Közeledik a félév vége, milyen adatokra építsünk a fejlesztés sikerességének értékelését?$$,
+    situation_text = NULL
+WHERE id = 61;
+
+UPDATE choices
+SET choice_text = $$Hasonlítsuk össze a megújított kurzusok adatait korábbiakkal és a OMHV adatok alapján elemezzük a változásokat!$$
+WHERE id = 103;
+
+UPDATE situations
+SET title = $$A megújított és a régi kurzusok eredményei alapján...$$,
+    situation_text = $$
+      <p>Látható, hogy az új megoldásokat alkalmazó kurzusok eredményei minden téren <hedgie-b>javultak az egyetemi</hedgie-b> Oktatói Munka Hallgatói Véleményezése (OMHV) alapján. A hallgatók a következőképpen értékeltek:</p>
+      <ul>
+        <li>Az oktató <hedgie-b>módszerhasználatá</hedgie-b>val elégedett az előző három év átlaga alapján a kitöltők 53%, a megújított kurzusokon pedig 72%.</li>
+        <li>A kurzus <hedgie-b>interaktivitás</hedgie-b>sal elégedett az előző három év átlaga alapján a kitöltők 13%, a megújított kurzusok esetében a hallgatók 51%-a.</li>
+        <li>A kurzust <hedgie-b>ajánlaná-e</hedgie-b> hallgatótársainak: az előző három év átlaga alapján a kitöltők 69%, az online kvíz bezetése óta 83%-a.</li>
+      </ul>
+    $$,
+    next_situation_id = 66
+WHERE id = 62;
+
+UPDATE situations
+SET title = $$Összességében az órákon elhangzott hallgatói vélemények szerint jó irányban változtak a kurzusok...$$,
+    situation_text = $$
+      <ul>
+        <li>A módszerek jobban támogatják a <hedgie-b>komplexebb kérdések</hedgie-b> feldolgozását, a tananyag összefügéseinek átgondolását.</li>
+        <li>A digitális eszközök jól működnek. A lényegesen több <hedgie-b>interaktivitás</hedgie-b> érdekessé teszi az órákat.</li>
+        <li>„<hedgie-b>Tök jó a hangulat</hedgie-b>, és végre izgalmas kérdésekről is beszélünk."</li>
+        <li><hedgie-b>Kevesebb a stressz</hedgie-b>, mint amikor az online kvízeknél minden időre ment.</li>
+      </ul>
+      <p><hedgie-b>Elhangzott néhány jobbító javaslat is:</hedgie-b></p>
+      <ul>
+        <li>Mivel az órai interaktivitás időigényesebb, előfordul, hogy <hedgie-b>nem mindenre jut egyformán idő</hedgie-b>, és egyes részekkel a korábbinál többet kell otthoni foglalkozni.</li>
+        <li>Egyeseknek problémát okoz, hogy az interaktív órák <hedgie-b>folyamatos lépéstartás</hedgie-b>t, felkészülést igényelnek minden héten, amit nem mindig tudnak megvalósítani, és ez számukra újabb stressz forrása lehet.</li>
+      </ul>
+    $$
+WHERE id = 64;
+
+UPDATE situations
+SET title = $$Összességében az órákon elhangzott hallgatói vélemények szerint jó irányban változtak a kurzusok...$$,
+    situation_text = $$
+      <ul>
+        <li>A módszerek jobban támogatják a <hedgie-b>komplexebb kérdések</hedgie-b> feldolgozását, a tananyag összefügéseinek átgondolását.</li>
+        <li>A digitális eszközök jól működnek. A lényegesen több <hedgie-b>interaktivitás</hedgie-b> érdekessé teszi az órákat.</li>
+        <li>„<hedgie-b>Tök jó a hangulat</hedgie-b>, és végre izgalmas kérdésekről is beszélünk."</li>
+        <li><hedgie-b>Kevesebb a stressz</hedgie-b>, mint amikor az online kvízeknél minden időre ment.</li>
+      </ul>
+      <p><hedgie-b>Elhangzott néhány jobbító javaslat is:</hedgie-b></p>
+      <ul>
+        <li>Mivel az órai interaktivitás időigényesebb, előfordul, hogy <hedgie-b>nem mindenre jut egyformán idő</hedgie-b>, és egyes részekkel a korábbinál többet kell otthoni foglalkozni.</li>
+        <li>Egyeseknek problémát okoz, hogy az interaktív órák <hedgie-b>folyamatos lépéstartás</hedgie-b>t, felkészülést igényelnek minden héten, amit nem mindig tudnak megvalósítani, és ez számukra újabb stressz forrása lehet.</li>
+      </ul>
+    $$
+WHERE id = 65;
+
+UPDATE situations
+SET title = $$A beérkezett visszajelzések, adatok alapján mit javasolsz a fejlesztői csapatnak a továbblépéshez?$$
+WHERE id = 66;
+
+UPDATE situations
+SET title = $$A fejlesztői csapat végül a kis változtatások és a pilot terjesztése mellett döntött. Először kinek és miként mutassuk be a fejlesztés eredményeit?$$
+WHERE id = 67;
+
+UPDATE situations
+SET title = $$Eltelt egy év és Te éppen egy felsőoktatási webináriumon veszel részt, ahol lehetőséget kaptál, hogy bemutathasd a Stundentaria Karon folyó oktatási innováció történetét. Gratulálunk!$$,
+    situation_text = NULL
+WHERE id = 68;
 
 COMMIT;
