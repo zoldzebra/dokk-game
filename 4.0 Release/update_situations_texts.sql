@@ -679,9 +679,31 @@ UPDATE choices
 SET next_situation_id = 92
 WHERE id = 83;
 
+-- Update situation 49 and follow ups
 UPDATE situations
 SET title = $$A fejlesztői csapat múltkori ülésen beszéltünk róla, hogy jó lenne visszajelzést kérni a hallgatóktól az oktatási újításainkról...$$,
     situation_text = $$Ez egy <hedgie-b>nehéz döntés</hedgie-b> számomra, most éppen rengeteg minden egyéb kutatási és oktatási feladatra kell figyelnem, viszont most már <hedgie-b>nem is halaszthatom tovább a döntést,</hedgie-b> tehát...$$
 WHERE id = 49;
+
+UPDATE choices
+SET choice_text = $$Folytatom a kurzust, ahogy eddig, mert még sok téma maradt, amit meg kell beszélni.$$
+WHERE id = 84;
+
+UPDATE choices
+SET next_situation_id = 50
+WHERE id = 86;
+
+UPDATE situations
+SET title = $$Találkozik a hallgatóival a folyosón, akik elégedetlenek azzal, hogy nem kaptak semmi visszajelzést arra, hogy hogyan működött az új módszertan, mennyire voltak sikeresek.$$,
+    situation_text = $$- Jó lenne hallani a <hedgie-b>tanárunk véleményét is!</hedgie-b>$$
+WHERE id = 50;
+
+INSERT INTO situations (id, title, situation_text, illustration, is_starter, is_halftime, is_terminal, situation_type, next_situation_id)
+VALUES (93, $$Szerencsére a csapat többi tagja adott visszajelzést a hallgatóknak, így a legközelebbi megbeszélésen lesz miről beszélnetek.$$,
+        NULL, 'szeminariumi_terem.png', FALSE, FALSE, FALSE, 1, 54);
+
+UPDATE choices
+SET next_situation_id = 49
+WHERE id = 87;
 
 COMMIT;
