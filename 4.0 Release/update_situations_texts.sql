@@ -597,7 +597,7 @@ SET next_situation_id = 40
 WHERE id = 64;
 
 UPDATE situations
-SET title = $$A beavatkozásod nyomán elmúlt a hallgatók bizonytalansága, most sikeresen oldották meg a feladatokat. Te mondasz a hallgatóknak erről?$$
+SET title = $$A beavatkozásod nyomán elmúlt a hallgatók bizonytalansága, most sikeresen oldották meg a feladatokat. Te mit mondasz a hallgatóknak erről?$$
 WHERE id = 41;
 
 UPDATE situations
@@ -714,7 +714,7 @@ SET title = $$Elkezded tervezni az utolsó órai visszajelzést. Melyiket válas
 WHERE id = 52;
 
 UPDATE situations
-SET title = $$A hallgatóimat ismerve az utolsó órai közös visszajelzést a következő módon tervezheted. Melyiket választod végül?$$,
+SET title = $$A hallgatókat ismerve az utolsó órai közös visszajelzést a következő módon tervezheted. Melyiket választod végül?$$,
     situation_text = NULL
 WHERE id = 53;
 
@@ -815,5 +815,26 @@ UPDATE situations
 SET title = $$Eltelt egy év és Te éppen egy felsőoktatási webináriumon veszel részt, ahol lehetőséget kaptál, hogy bemutathasd a Stundentaria Karon folyó oktatási innováció történetét. Gratulálunk!$$,
     situation_text = NULL
 WHERE id = 68;
+
+UPDATE methodology_alignments
+SET aim_text = $$A hallgatók képessé válnak rendszerezni és vizuálisan ábrázolni egy témával kapcsolatos tudást akár egyénileg, akár másokkal kooperálva.$$,
+    assessment_text = $$Előre rögzített szempontoknak való megfelelés, pl. fogalomhasználat, szintezés mélysége stb.$$
+WHERE id = 3;
+
+UPDATE choices
+SET choice_text = $$Lehet Péternek és intézeti értekezleteken$$
+WHERE id = 110;
+
+UPDATE choices
+SET choice_text = $$Lehet Péternek és az intézetvezetőknek$$
+WHERE id = 111;
+
+UPDATE choices
+SET choice_text = $$Informális beszélgetéseken$$
+WHERE id = 112;
+
+UPDATE choices
+SET choice_text = $$Gólyatáborban$$
+WHERE id = 114;
 
 COMMIT;
