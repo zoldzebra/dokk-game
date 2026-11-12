@@ -115,35 +115,6 @@
     width: 100%;
 }
 
-.level-selector {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 5px;
-    gap: 5px;
-    margin-top: 15px;
-
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.05);
-    backdrop-filter: blur(25px);
-    border-radius: 20px;
-}
-
-.level-button {
-    padding: 10px 24px;
-    border-radius: 12px;
-    border: none;
-    background: rgba(255,255,255,0.1);
-    color: white;
-    transition: 0.2s;
-}
-
-.level-button.active {
-    background: #5050d8;
-}
-
 .character-info {
     display: flex;
     flex-direction: column;

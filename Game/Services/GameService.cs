@@ -32,11 +32,12 @@ public class GameService(GameDbContext context, ILogger<GameService> logger)
     }
 
     public async Task<(bool Success, Player? Player, string? ErrorMessage)> CreatePlayerAsync(
-        string username, PlayerLevel level, Gender gender, Age age)
+        string username, Gender gender, Age age)
     {
         try
         {
             username = username?.Trim() ?? string.Empty;
+            const PlayerLevel level = PlayerLevel.Doktorandusz;
 
             var player = new Player
             {

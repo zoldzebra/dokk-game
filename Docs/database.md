@@ -117,6 +117,9 @@ Tábla neve: `players`
 	- 1 = doktorandusz
 	- 2 = docens
 	- 3 = adjunktus
+
+A szintválasztás jelenleg nem érhető el a felületen; az adatbázismező és a felsorolt értékek megmaradnak, de az új játékosoknál a kód mindig az 1-es értéket menti.
+
 - `energy`: A játékos energiaszintje.
 - `selfreflection`: A játékos önreflexiós szintje.
 - `competency`: A játékos felkészültségi szintje.

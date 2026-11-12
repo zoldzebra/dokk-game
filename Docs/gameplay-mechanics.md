@@ -2,10 +2,9 @@
 
 ## Játékos létrehozása `(/setup)`
 
-A játékos kiválasztja karakterét és szintjét, majd felhasználónevet választ magának.
+A játékos kiválasztja karakterét, majd felhasználónevet választ magának. A szintválasztás jelenleg nem érhető el a felületen; a létrehozó kód minden új játékosnál az 1-es szintet állítja be.
 
 - **Felhasználónév** (egyedi azonosító, melynek egyedisége ellenőrzött)
-- **Szint** (`PlayerLevel` enum)
 - **Nem** (`Male`/`Female`)
 - **Kor** (`Young`/`Old`)
 
