@@ -89,6 +89,7 @@ Tábla neve: `choices`
 - `id`: A döntés azonosítója (létrehozásnál nem kell megadni).
 - `situation_id`: Azon szituáció azonosítója, amelynek egy lehetséges döntéseként szerepeltetni szeretnénk ezt az elemet (kötelező).
 - `choice_text`: A döntés szövege (kötelező).
+- `tooltip_text`: Opcionális magyarázó szöveg, amely a döntés fölé helyezett egérmutatóra vagy billentyűzetes fókuszra jelenik meg. `NULL`, üres vagy csak whitespace karakterekből álló érték esetén nem jelenik meg tooltip.
 - `next_situation_id`: A következő szituáció azonosítója (kötelező).
 - `delta_*`: A döntés okozta statváltozás értéke adott statra. A statok:
 	- Energy: energia
@@ -104,6 +105,14 @@ Példa hozzáadásra:
 ```sql
 INSERT INTO choices (id, situation_id, choice_text, next_situation_id, delta_energy, delta_selfreflection, delta_competency, delta_initiative, delta_creativity, delta_cooperation, delta_motivation) VALUES (2, 3, 'Még nincs elég információnk.', 5, NULL, NULL, 1, 1, NULL, NULL, NULL);
 ```
+
+Tooltip beállítása egy meglévő döntéshez:
+
+```sql
+UPDATE choices SET tooltip_text = 'Magyarázó szöveg' WHERE id = 2;
+```
+
+Az új alkalmazásverzió telepítése előtt futtatni kell az [`add-choice-tooltip-text.sql`](../4.0%20Release/add-choice-tooltip-text.sql) scriptet, újonnan létrehozott és meglévő adatbázison is. A script a 15-ös döntéshez tooltip szöveget is beállít; a többi döntésnél az új mező alapértelmezett értéke `NULL`.
 
 ### Játékosok
 

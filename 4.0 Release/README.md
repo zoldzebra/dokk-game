@@ -16,7 +16,8 @@ A helyes és helytelen párosítások nem módosítják azonnal a statokat; a j�
 A játék megfelelő működéséhez a következő scripteket kell futtatni:
 
 1. [`update_situations_texts.sql`](update_situations_texts.sql)
-2. [`update_minigame_scoring.sql`](update_minigame_scoring.sql): A `methodology_alignments` tábla összes helyes és helytelen deltaértékének nullázása, az oszlopok megtartásával.
+2. [`update_minigame_scoring.sql`](update_minigame_scoring.sql): A `methodology_alignments` tábla összes helyes és helytelen deltaértékének nullázása, az oszlopok megtartásával. Az aktuális pontszámítást a kód végzi.
+3. [`add-choice-tooltip-text.sql`](add-choice-tooltip-text.sql): a választási lehetőségek opcionális, tooltipben megjeleníthető mezőt kapnak. Egyelőre csak a mikrojáték előtti opciók során használjuk.
 
 ## Deployment hozzávalói
 
@@ -38,6 +39,6 @@ A játék megfelelő működéséhez a következő scripteket kell futtatni:
   "3.0 Release/misc_text_fixes.sql" \
   "3.0 Release/typo_fixes.sql" \
   "3.1 Release/update_choice_126_next_situation.sql" \
-  "3.1 Release/update_situations_texts.sql" \
   "4.0 Release/update_situations_texts.sql" \
-  "4.0 Release/update_minigame_scoring.sql"
+  "4.0 Release/update_minigame_scoring.sql" \
+  "4.0 Release/add-choice-tooltip-text.sql"

@@ -84,6 +84,8 @@
                     {
                         var isAlreadyTaken = IsChoiceTaken(choice);
                         var isSelected = multiSelectedChoices.Contains(choice.Id);
+                        var hasTooltip = !string.IsNullOrWhiteSpace(choice.TooltipText);
+                        var tooltipId = $"choice-tooltip-{choice.Id}";
                         <div class="choice-button-container">
                             @if (!string.IsNullOrWhiteSpace(choice.Link))
                             {
@@ -91,12 +93,24 @@
                                     Részletek ↗
                                 </button>
                             }
-                            <button class="choice-button @(isSelected ? "selected" : "")"
-                                    @onclick="() => ToggleMultiSelect(choice)"
-                                    disabled="@isAlreadyTaken">
-                                <div class="shine" />
-                                <span class="choice-text">@choice.Text</span>
-                            </button>
+                            <div class="choice-tooltip-target"
+                                 tabindex="@(isAlreadyTaken && hasTooltip ? "0" : null)"
+                                 role="@(isAlreadyTaken && hasTooltip ? "group" : null)"
+                                 aria-label="@(isAlreadyTaken && hasTooltip ? choice.Text : null)"
+                                 aria-disabled="@(isAlreadyTaken && hasTooltip ? "true" : null)"
+                                 aria-describedby="@(isAlreadyTaken && hasTooltip ? tooltipId : null)">
+                                <button class="choice-button @(isSelected ? "selected" : "")"
+                                        @onclick="() => ToggleMultiSelect(choice)"
+                                        disabled="@isAlreadyTaken"
+                                        aria-describedby="@(hasTooltip ? tooltipId : null)">
+                                    <div class="shine" />
+                                    <span class="choice-text">@choice.Text</span>
+                                </button>
+                                @if (hasTooltip)
+                                {
+                                    <div id="@tooltipId" class="choice-tooltip" role="tooltip">@choice.TooltipText</div>
+                                }
+                            </div>
                         </div>
                     }
                 </div>
@@ -119,6 +133,8 @@
                     @foreach (var choice in currentSituation.Choices)
                     {
                         var isChoiceTaken = IsChoiceTaken(choice);
+                        var hasTooltip = !string.IsNullOrWhiteSpace(choice.TooltipText);
+                        var tooltipId = $"choice-tooltip-{choice.Id}";
                         <div class="choice-button-container">
                             @if (!string.IsNullOrWhiteSpace(choice.Link))
                             {
@@ -126,10 +142,22 @@
                                     Részletek ↗
                                 </button>
                             }
-                            <button class="choice-button" @onclick="() => HandleChoiceAsync(choice)" disabled="@isChoiceTaken">
-                                <div class="shine" />
-                                <span class="choice-text">@choice.Text</span>
-                            </button>
+                            <div class="choice-tooltip-target"
+                                 tabindex="@(isChoiceTaken && hasTooltip ? "0" : null)"
+                                 role="@(isChoiceTaken && hasTooltip ? "group" : null)"
+                                 aria-label="@(isChoiceTaken && hasTooltip ? choice.Text : null)"
+                                 aria-disabled="@(isChoiceTaken && hasTooltip ? "true" : null)"
+                                 aria-describedby="@(isChoiceTaken && hasTooltip ? tooltipId : null)">
+                                <button class="choice-button" @onclick="() => HandleChoiceAsync(choice)"
+                                        disabled="@isChoiceTaken" aria-describedby="@(hasTooltip ? tooltipId : null)">
+                                    <div class="shine" />
+                                    <span class="choice-text">@choice.Text</span>
+                                </button>
+                                @if (hasTooltip)
+                                {
+                                    <div id="@tooltipId" class="choice-tooltip" role="tooltip">@choice.TooltipText</div>
+                                }
+                            </div>
                         </div>
                     }
                 </div>
@@ -140,10 +168,24 @@
                     @foreach (var choice in currentSituation.Choices)
                     {
                         var isChoiceTaken = IsChoiceTaken(choice);
-                        <button class="choice-button" @onclick="() => HandleChoiceAsync(choice)" disabled="@isChoiceTaken">
-                            <div class="shine" />
-                            <span class="choice-text">@choice.Text</span>
-                        </button>
+                        var hasTooltip = !string.IsNullOrWhiteSpace(choice.TooltipText);
+                        var tooltipId = $"choice-tooltip-{choice.Id}";
+                        <div class="choice-tooltip-target"
+                             tabindex="@(isChoiceTaken && hasTooltip ? "0" : null)"
+                             role="@(isChoiceTaken && hasTooltip ? "group" : null)"
+                             aria-label="@(isChoiceTaken && hasTooltip ? choice.Text : null)"
+                             aria-disabled="@(isChoiceTaken && hasTooltip ? "true" : null)"
+                             aria-describedby="@(isChoiceTaken && hasTooltip ? tooltipId : null)">
+                            <button class="choice-button" @onclick="() => HandleChoiceAsync(choice)"
+                                    disabled="@isChoiceTaken" aria-describedby="@(hasTooltip ? tooltipId : null)">
+                                <div class="shine" />
+                                <span class="choice-text">@choice.Text</span>
+                            </button>
+                            @if (hasTooltip)
+                            {
+                                <div id="@tooltipId" class="choice-tooltip" role="tooltip">@choice.TooltipText</div>
+                            }
+                        </div>
                     }
                 </div>
             }
