@@ -8,6 +8,7 @@ public class Choice
     public int Id { get; set; }
     public int SituationId { get; set; }
     public string Text { get; set; } = default!;
+    public string? TooltipText { get; set; }
     public int NextSituationId { get; set; }
     public Stats DeltaStats { get; set; } = new();
     public string? Link { get; set; }

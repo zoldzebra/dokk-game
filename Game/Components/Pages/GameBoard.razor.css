@@ -170,6 +170,50 @@
     position: relative;
 }
 
+.choice-tooltip-target {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.choice-tooltip-target:hover,
+.choice-tooltip-target:focus-visible,
+.choice-tooltip-target:has(> .choice-button:focus-visible) {
+    z-index: 101;
+}
+
+.choice-tooltip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    z-index: 1;
+    box-sizing: border-box;
+    width: max-content;
+    max-width: 100%;
+    padding: 4px 8px;
+    color: var(--powder-50);
+    background: var(--powder-800);
+    border: solid var(--powder-500);
+    border-width: 1px 1px 2px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%);
+    transition: opacity 0.15s ease;
+}
+
+.choice-tooltip-target:hover .choice-tooltip,
+.choice-tooltip-target:focus-visible .choice-tooltip,
+.choice-button:focus-visible + .choice-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
 .link-button {
     display: flex;
     align-items: center;

@@ -17,6 +17,7 @@ A játék megfelelő működéséhez a következő scripteket kell futtatni:
 
 1. [`update_situations_texts.sql`](update_situations_texts.sql)
 2. [`update_minigame_scoring.sql`](update_minigame_scoring.sql): A `methodology_alignments` tábla összes helyes és helytelen deltaértékének nullázása, az oszlopok megtartásával.
+3. [`add-choice-tooltip-text.sql`](add-choice-tooltip-text.sql) (az alkalmazás indítása előtt, új adatbázis esetén is)
 
 ## Deployment hozzávalói
 
