@@ -2,7 +2,6 @@
 @rendermode InteractiveServer
 @using System.ComponentModel.DataAnnotations
 @using System.Collections.Generic
-@using System.Text.RegularExpressions
 @using Game.Models
 @using Game.Services
 @using Game.Components.Shared
@@ -20,26 +19,6 @@
         <div class="upper-wrapper">
             <h1>Karakterválasztás</h1>
             <p>Válassz egy számodra szimpatikus szereplőt és indulhat is a játék!</p>
-
-            <div class="level-selector">
-                <button type="button"
-                        class="@(_model.Level == PlayerLevel.Doktorandusz ? "fancy-dark" : "")"
-                        @onclick="() => _model.Level = PlayerLevel.Doktorandusz">
-                    @FormatEnum(PlayerLevel.Doktorandusz)
-                </button>
-
-                <button type="button"
-                        class="@(_model.Level == PlayerLevel.Adjunktus ? "fancy-dark" : "")"
-                        @onclick="() => _model.Level = PlayerLevel.Adjunktus">
-                    @FormatEnum(PlayerLevel.Adjunktus)
-                </button>
-
-                <button type="button"
-                        class="@(_model.Level == PlayerLevel.Docens ? "fancy-dark" : "")"
-                        @onclick="() => _model.Level = PlayerLevel.Docens">
-                    @FormatEnum(PlayerLevel.Docens)
-                </button>
-            </div>
         </div>
 
         <div class="character-info">
@@ -136,7 +115,7 @@
 
     private int CurrentIndex { get; set; } = 0;
     private CharacterData CurrentCharacter => Characters[CurrentIndex];
-    private Stats PreviewStats => Stats.GetDefault(_model.Level, CurrentCharacter.Gender, CurrentCharacter.Age);
+    private Stats PreviewStats => Stats.GetDefault(PlayerLevel.Doktorandusz, CurrentCharacter.Gender, CurrentCharacter.Age);
 
     private bool IsUsernameEntered => !string.IsNullOrWhiteSpace(_model.Username);
 
@@ -234,7 +213,6 @@
         {
             var (success, player, errorMessage) = await GameService.CreatePlayerAsync(
                 username,
-                _model.Level,
                 CurrentCharacter.Gender,
                 CurrentCharacter.Age
             );
@@ -257,9 +235,6 @@
         }
     }
 
-    private static string FormatEnum(Enum e)
-        => string.Join(' ', Regex.Split(e.ToString(), "(?<=.)(?=[A-Z])"));
-
     private class CharacterSetupModel
     {
         [Required(ErrorMessage = "Álljon meg a menet! Ez nem maradhat üresen!")]
@@ -272,15 +247,11 @@
         [Required]
         public Age Age { get; set; } = Age.Young;
 
-        [Required]
-        public PlayerLevel Level { get; set; } = PlayerLevel.Doktorandusz;
-
         public void Reset()
         {
             Username = string.Empty;
             Gender = Gender.Male;
             Age = Age.Young;
-            Level = PlayerLevel.Doktorandusz;
         }
     }
 }
