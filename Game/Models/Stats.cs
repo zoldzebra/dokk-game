@@ -65,6 +65,17 @@ public class Stats
         Initiative = Clamp(Initiative + delta.Initiative);
     }
 
+    internal void Restore(Stats stats)
+    {
+        Energy = stats.Energy;
+        Success = stats.Success;
+        SelfReflection = stats.SelfReflection;
+        Creativity = stats.Creativity;
+        Cooperation = stats.Cooperation;
+        Competency = stats.Competency;
+        Initiative = stats.Initiative;
+    }
+
     public int Total => Energy + Success;
 
     public IReadOnlyDictionary<string, (string Canonical, int Value, StatType Type)> AsDictionary() => new Dictionary<string, (string, int, StatType)>

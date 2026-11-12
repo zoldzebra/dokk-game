@@ -5,12 +5,18 @@
 - update situations titles and texts,
 - add new situations
 - add hedgie specific bold style (hedgie-b)
+- simplify minigame scoring: apply stats only on completion
+
+## Minijáték pontozása
+
+A helyes és helytelen párosítások nem módosítják azonnal a statokat; a játék megszámolja a helytelen párosítási kísérleteket. A minijáték sikeres befejezésekor az energia 2-vel csökken, az együttműködés 2-vel nő, a felkészültség pedig `max(6 - helytelen kísérletek száma, 0)` értékkel nő. Hat vagy több hiba esetén a felkészültség nem változik. A szokásos 0–100-as statkorlátok érvényesek.
 
 ## Adatbázisfrissítés
 
 A játék megfelelő működéséhez a következő scripteket kell futtatni:
 
 1. [`update_situations_texts.sql`](update_situations_texts.sql)
+2. [`update_minigame_scoring.sql`](update_minigame_scoring.sql): A `methodology_alignments` tábla összes helyes és helytelen deltaértékének nullázása, az oszlopok megtartásával.
 
 ## Deployment hozzávalói
 
@@ -32,4 +38,6 @@ A játék megfelelő működéséhez a következő scripteket kell futtatni:
   "3.0 Release/misc_text_fixes.sql" \
   "3.0 Release/typo_fixes.sql" \
   "3.1 Release/update_choice_126_next_situation.sql" \
-  "3.1 Release/update_situations_texts.sql"
+  "3.1 Release/update_situations_texts.sql" \
+  "4.0 Release/update_situations_texts.sql" \
+  "4.0 Release/update_minigame_scoring.sql"

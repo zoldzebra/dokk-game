@@ -364,27 +364,43 @@ public class GameService(GameDbContext context, ILogger<GameService> logger)
             .ToList();
     }
 
-    public async Task<(bool Success, Player Player, string? ErrorMessage)> ApplyMinigameDeltaAsync(
-        Player player, Stats delta)
+    public async Task<(bool Success, Player Player, string? ErrorMessage)> CompleteMinigameAsync(
+        Player player, int badChoices)
     {
+        var originalStats = new Stats(
+            player.Stats.Energy, player.Stats.Success, player.Stats.SelfReflection,
+            player.Stats.Creativity, player.Stats.Cooperation, player.Stats.Competency,
+            player.Stats.Initiative);
+
         try
         {
-            player.ApplyDelta(delta);
+            player.ApplyDelta(new Stats(
+                energy: -2, success: 0, selfreflection: 0, creativity: 0,
+                cooperation: 2, competency: Math.Max(6 - badChoices, 0), initiative: 0));
             _context.Update(player);
             await _context.SaveChangesAsync();
             return (true, player, null);
         }
         catch (DatabaseOperationException ex)
         {
-            _logger.LogError(ex, "Database error applying minigame delta for player {PlayerId}", player.Id);
-            _context.Entry(player).State = EntityState.Unchanged;
+            _logger.LogError(ex, "Database error completing minigame for player {PlayerId}", player.Id);
+            RestoreStats();
             return (false, player, "Unable to save progress. Please try again.");
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Unexpected error applying minigame delta for player {PlayerId}", player.Id);
-            _context.Entry(player).State = EntityState.Unchanged;
+            _logger.LogError(ex, "Unexpected error completing minigame for player {PlayerId}", player.Id);
+            RestoreStats();
             return (false, player, "An unexpected error occurred. Please try again.");
+        }
+
+        void RestoreStats()
+        {
+            player.Stats.Restore(originalStats);
+            _context.Entry(player).State = EntityState.Unchanged;
+            var statsEntry = _context.Entry(player).Reference(p => p.Stats).TargetEntry;
+            if (statsEntry != null)
+                statsEntry.State = EntityState.Unchanged;
         }
     }
 }

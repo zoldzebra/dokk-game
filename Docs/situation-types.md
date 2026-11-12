@@ -22,8 +22,10 @@ Drag-and-drop konstruktív összehangolási játék. Egy képernyőn jelenik meg
 **Mechanika:**
 - A helyes párosítás „rögzül" (nem mozgatható tovább).
 - A helytelen párosítás eltávolítható és máshova helyezhető.
-- Mindkét esetben statisztikamódosítás (delta) kerül alkalmazásra – a helyes/helytelen deltákat a `methodology_alignments` tábla tárolja Módszertanonként.
+- A párosítások közben nem változnak a statok; a játék megszámolja a helytelen párosítási kísérleteket.
 - A szituáció akkor ér véget (és a játékos tovább léphet), ha mind a 6 slot (3 Cél + 3 Értékelés) helyesen ki van töltve.
+
+A minijáték sikeres befejezésekor a játékos −2 energiát, +2 együttműködést és `max(6 - helytelen kísérletek száma, 0)` felkészültséget kap. A részletes pontozás és adatbázisfrissítés a [4.0 release leírásában](../4.0%20Release/README.md) található.
 
 **Adatok forrása:** A Módszertan-kártyák a játékos által a megelőző Special szituációban kiválasztott döntések szövegéből jönnek. A helyes Cél és Értékelés szövegek a `methodology_alignments` táblából töltődnek be.
 
