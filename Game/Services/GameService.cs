@@ -84,7 +84,7 @@ public class GameService(GameDbContext context, ILogger<GameService> logger)
         try
         {
             return await _context.Situations
-                .Include(s => s.Choices)
+                .Include(s => s.Choices.OrderBy(c => c.Id))
                 .FirstOrDefaultAsync(s => s.Id == player.CurrentSituationId);
         }
         catch (Exception ex)
@@ -100,7 +100,7 @@ public class GameService(GameDbContext context, ILogger<GameService> logger)
         {
             var situations = await _context.Situations
                 .AsNoTracking()
-                .Include(s => s.Choices)
+                .Include(s => s.Choices.OrderBy(c => c.Id))
                 .OrderBy(s => s.Id)
                 .ToListAsync();
 
