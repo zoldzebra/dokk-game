@@ -2,6 +2,7 @@
 @rendermode InteractiveServer
 @using Game.Models
 @using Game.Services
+@using Game.Components.Shared
 
 @inject GameService GameService
 @inject GameState GameState
@@ -10,6 +11,11 @@
 @inject IJSRuntime JS
 
 <PageTitle>Félidő</PageTitle>
+
+@if (GameState.HasActiveSession && GameState.CurrentPlayer is not null)
+{
+    <PlayerStatsBar Stats="@GameState.CurrentPlayer.Stats" />
+}
 
 <div class="main-container">
     @if (isLoading)
@@ -23,7 +29,7 @@
     {
         <section class="summary">
             <h1>Gratulálunk!</h1>
-            <p>A játék felénél jársz. Vettük a fáradságot, és eddigi fáradozásaidat kiértékeltük, hogy lásd, hogyan teljesítettél eddig.</p>
+            <p>A játék felénél jársz. Vettük a fáradtságot, és eddigi fáradozásaidat kiértékeltük, hogy lásd, hogyan teljesítettél eddig.</p>
         </section>
 
         <section class="stat-evaluation">
@@ -79,8 +85,8 @@
     {
         if (player is not null)
         {
-            var iconUrl = await JS.InvokeAsync<string>("faviconHelper.getCharacterIconUrl", 
-                (int)player.Type.Gender, 
+            var iconUrl = await JS.InvokeAsync<string>("faviconHelper.getCharacterIconUrl",
+                (int)player.Type.Gender,
                 (int)player.Type.Age);
             await JS.InvokeVoidAsync("faviconHelper.changeFavicon", iconUrl);
         }
@@ -113,7 +119,7 @@
             if (currentSituation?.NextSituationId is not null)
             {
                 var (success, updatedPlayer, errorMessage) = await GameService.ContinueFromHalftimeAsync(player, currentSituation.NextSituationId.Value);
-                
+
                 if (success)
                 {
                     player = updatedPlayer;
