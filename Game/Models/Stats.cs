@@ -76,7 +76,7 @@ public class Stats
         Initiative = stats.Initiative;
     }
 
-    public int Total => Energy + Success;
+    public int Total => Energy + Success + SelfReflection + Creativity + Cooperation + Competency + Initiative;
 
     public IReadOnlyDictionary<string, (string Canonical, int Value, StatType Type)> AsDictionary() => new Dictionary<string, (string, int, StatType)>
     {
